@@ -33,9 +33,9 @@ public class hiseGenerator : MonoBehaviour {
     {
         
         GameObject zac = seznamHis[stevec % seznamHis.Length];
-        Vector3 pos = t.transform.position;
-        pos.x += t.transform.localScale.x + zac.transform.localScale.x;
-        zac.transform.position = pos;
+        Vector3 pos = t.transform.localPosition;
+        pos.x += t.transform.localScale.x/2 + zac.transform.localScale.x/2;
+        zac.transform.localPosition = pos;
         zac.SetActive(true);
 
 
