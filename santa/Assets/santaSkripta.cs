@@ -34,17 +34,17 @@ public class santaSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        foreach (Touch touch in Input.touches)
-        {
-            if (touch.phase == TouchPhase.Began)
-            {
-                seznamDaril[stevec].SetActive(true);
-                seznamDaril[stevec].transform.position = transform.position;
-                seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
-                stevec++;
-                stevec %= seznamDaril.Length;
-            }
-        }
+        //foreach (Touch touch in Input.touches)
+        //{
+        //    if (touch.phase == TouchPhase.Began)
+        //    {
+        //        seznamDaril[stevec].SetActive(true);
+        //        seznamDaril[stevec].transform.position = transform.position;
+        //        seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
+        //        stevec++;
+        //        stevec %= seznamDaril.Length;
+        //    }
+        //}
         novoStanje = Input.GetMouseButtonDown(0);
         if (novoStanje && !staroStanje)
         {
