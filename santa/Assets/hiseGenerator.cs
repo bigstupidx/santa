@@ -9,7 +9,9 @@ public class hiseGenerator : MonoBehaviour {
     int stevec = 0;
     Vector3 zacetnaPos;
     float speed = 0;
-    public static float speedP = 1; 
+    public static float speedP = 1;
+
+    int idHis = 0;
 	void Start () {
         seznamHis = new GameObject[100];
         
@@ -29,25 +31,36 @@ public class hiseGenerator : MonoBehaviour {
         speedP = 1;
 	}
 
-    public void dodajHiso(Transform t)
+    public void dodajHiso(Transform t, int idx)
     {
+        if(idx == idHis && santaSkripta.igranje)
+        {
+            GameObject zac = seznamHis[stevec % seznamHis.Length];
+            Vector3 pos = t.transform.localPosition;
+            pos.x += t.transform.localScale.x / 2 + zac.transform.localScale.x / 2;
+            zac.transform.localPosition = pos;
+            zac.SetActive(true);
+            zac.GetComponent<hisaSkripta>().IdHisa = idx;
+            stevec++;
+        }
+
         
-        GameObject zac = seznamHis[stevec % seznamHis.Length];
-        Vector3 pos = t.transform.localPosition;
-        pos.x += t.transform.localScale.x/2 + zac.transform.localScale.x/2;
-        zac.transform.localPosition = pos;
-        zac.SetActive(true);
-
-
-        stevec++;
-
     }
 
     public void dodajPrvoHiso()
     {
-        GameObject zac = seznamHis[stevec % seznamHis.Length];
-        zac.SetActive(true);
-        zac.transform.position = zacetnaPos;
+        idHis++;
+        if (stevec == 0 || !seznamHis[(stevec-1) % seznamHis.Length].GetComponent<hisaSkripta>().vCol)
+        {
+            GameObject zac = seznamHis[stevec % seznamHis.Length];
+            zac.SetActive(true);
+            zac.transform.position = zacetnaPos;
+            zac.GetComponent<hisaSkripta>().IdHisa = idHis;
+        }
+        else
+        {
+            seznamHis[(stevec - 1) % seznamHis.Length].GetComponent<hisaSkripta>().IdHisa = idHis;
+        }
         stevec++;
         speed = 3;
     }

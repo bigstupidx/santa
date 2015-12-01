@@ -26,6 +26,7 @@ public class menuSkripta : MonoBehaviour {
         playGumb.SetActive(false);
         santa.ponastavi();
         hise.dodajPrvoHiso();
+        santaSkripta.igranje = true;
     }
 
     public static void loose()

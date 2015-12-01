@@ -22,6 +22,7 @@ public class santaSkripta : MonoBehaviour {
     float scit = 0;
     float dvojne = 0;
     float hitrost = 0;
+    static public bool igranje = false;
 	void Start () {
         hisoDodaj = GameObject.Find("dodajHiso");
         seznamDaril = new GameObject[30];
@@ -46,13 +47,16 @@ public class santaSkripta : MonoBehaviour {
         //    }
         //}
         novoStanje = Input.GetMouseButtonDown(0);
-        if (novoStanje && !staroStanje)
+        if (novoStanje && !staroStanje && igranje)
         {
             seznamDaril[stevec].SetActive(true);
             seznamDaril[stevec].transform.position = transform.position;
+            
+            seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
+            seznamDaril[stevec].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 0), ForceMode2D.Impulse);
             stevec++;
             stevec %= seznamDaril.Length;
-            seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
         }
         staroStanje = novoStanje;
         if(scit > 0)
@@ -79,8 +83,8 @@ public class santaSkripta : MonoBehaviour {
             hpText.text = "HP " + hp;
             if (hp <= 0)
             {
-
-                hisoDodaj.SetActive(false);
+                igranje = false;
+                //hisoDodaj.SetActive(false);
                 menuSkripta.loose();
                 powerSkripta.skalar = 0;
             }
@@ -128,7 +132,7 @@ public class santaSkripta : MonoBehaviour {
         stZadetkov = 0;
         stZgresitev = 0;
         hp = 1;
-        hisoDodaj.SetActive(true);
+        //hisoDodaj.SetActive(true);
         hpText.text = "HP " + hp;
         score.text = "SCORE: " + stZadetkov;
     }

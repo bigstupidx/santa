@@ -5,6 +5,8 @@ public class hisaSkripta : MonoBehaviour {
 
     // Use this for initialization
     hiseGenerator mapGenerator;
+    public int IdHisa = -1;
+    public bool vCol = false;
 	void Start () {
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
         gameObject.SetActive(false);
@@ -18,8 +20,20 @@ public class hisaSkripta : MonoBehaviour {
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("dodajHiso"))
-            mapGenerator.dodajHiso(transform);
+        {
+            vCol = false;
+            mapGenerator.dodajHiso(transform, IdHisa);
+        }
+            
     }
 
-    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("dodajHiso"))
+        {
+            vCol = true;
+        }
+    }
+
+
 }
