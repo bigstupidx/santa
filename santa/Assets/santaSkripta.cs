@@ -54,7 +54,7 @@ public class santaSkripta : MonoBehaviour {
             
             seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
             seznamDaril[stevec].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 0), ForceMode2D.Impulse);
+            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, 0), ForceMode2D.Impulse);
             stevec++;
             stevec %= seznamDaril.Length;
         }
