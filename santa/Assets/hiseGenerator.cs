@@ -11,7 +11,7 @@ public class hiseGenerator : MonoBehaviour {
     public float speed = 0;
     public static float speedP = 0;
     RectTransform parentC;
-    Vector3 scale;
+
  
 
     int idHis = 0;
@@ -24,9 +24,7 @@ public class hiseGenerator : MonoBehaviour {
         for (int i=0; i < seznamHis.Length; i++)
         {
             seznamHis[i] = Instantiate(Hise[Random.Range(0, Hise.Length)]);
-            seznamHis[i].transform.SetParent(transform);
-            scale = seznamHis[i].GetComponent<RectTransform>().localScale;
-            seznamHis[i].GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+            seznamHis[i].transform.SetParent(transform,false);
 
         }
         zacetnaPos = transform.position;
@@ -44,10 +42,10 @@ public class hiseGenerator : MonoBehaviour {
         if(idx == idHis && santaSkripta.igranje)
         {
             GameObject zac = seznamHis[stevec % seznamHis.Length];
-            Vector3 pos = t.GetComponent<RectTransform>().position;
-            pos.x += (t.GetComponent<RectTransform>().sizeDelta.x / 2 + zac.GetComponent<RectTransform>().sizeDelta.x / 2)/scale.x;
+            Vector3 pos = t.GetComponent<RectTransform>().localPosition;
+            pos.x += (t.GetComponent<RectTransform>().sizeDelta.x / 2 + zac.GetComponent<RectTransform>().sizeDelta.x / 2);
             t.GetComponent<RectTransform>();
-            zac.GetComponent<RectTransform>().position = pos;
+            zac.GetComponent<RectTransform>().localPosition = pos;
             zac.SetActive(true);
             zac.GetComponent<hisaSkripta>().IdHisa = idx;
             stevec++;
