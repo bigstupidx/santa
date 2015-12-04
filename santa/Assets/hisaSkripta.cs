@@ -6,6 +6,7 @@ public class hisaSkripta : MonoBehaviour {
     // Use this for initialization
     hiseGenerator mapGenerator;
     public int IdHisa = -1;
+    public float speed;
     public bool vCol = false;
 	void Start () {
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
@@ -14,7 +15,7 @@ public class hisaSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        transform.position += transform.right * -speed * Time.deltaTime;
 	}
 
     void OnTriggerExit2D(Collider2D other)
