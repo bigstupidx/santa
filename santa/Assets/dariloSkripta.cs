@@ -10,7 +10,7 @@ public class dariloSkripta : MonoBehaviour {
 	void Start () {
         gameObject.SetActive(false);
         mapGenerator = GameObject.Find("Hise");
-        santa = GameObject.Find("Santa").GetComponent<santaSkripta>();
+        santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         //transform.parent = mapGenerator.transform.parent;
         transform.SetParent(mapGenerator.transform, false);
         //GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);

@@ -11,7 +11,7 @@ public class menuSkripta : MonoBehaviour {
 
     static GameObject playG;
 	void Start () {
-        santa = GameObject.Find("Santa").GetComponent<santaSkripta>();
+        santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         playG = playGumb;
         
 	}
