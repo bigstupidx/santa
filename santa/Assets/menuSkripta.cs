@@ -43,12 +43,12 @@ public class menuSkripta : MonoBehaviour {
 
     public void RATE()
     {
-
+        UnityPluginForWindowsPhone.Class1.prizgiRate();
     }
 
     public void FB()
     {
-
+        Application.OpenURL("https://www.facebook.com/mordenkul");
     }
 
     public void leader()
