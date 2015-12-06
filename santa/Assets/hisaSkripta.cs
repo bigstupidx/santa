@@ -8,15 +8,22 @@ public class hisaSkripta : MonoBehaviour {
     public int IdHisa = -1;
     public float speed;
     public bool vCol = false;
-	void Start () {
+    RectTransform rectCanvas;
+    RectTransform rectMe;
+    void Start () {
+        rectMe = GetComponent<RectTransform>();
+        rectCanvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
         gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position += transform.right * -speed * Time.deltaTime;
-	}
+        if (rectMe.position.x + rectMe.sizeDelta.x / 2 < -rectCanvas.sizeDelta.x / 2)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     void OnTriggerExit2D(Collider2D other)
     {

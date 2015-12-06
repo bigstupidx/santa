@@ -122,6 +122,7 @@ public class santaSkripta : MonoBehaviour {
             {
                 hitrost = 3;
             }
+            other.GetComponent<subPower>().power.nastaviSkalar();
         }
             
     }
