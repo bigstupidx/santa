@@ -19,27 +19,24 @@ public class hisaSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (rectMe.position.x + rectMe.sizeDelta.x / 2 < -rectCanvas.sizeDelta.x / 2)
-        {
-            gameObject.SetActive(false);
-        }
+        //transform.position += transform.right * -speed * Time.deltaTime;
+        
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("dodajHiso"))
+        if (other.CompareTag("canvas"))
         {
-            vCol = false;
-            mapGenerator.dodajHiso(transform, IdHisa);
+            gameObject.SetActive(false);
         }
             
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("dodajHiso"))
+        if (other.CompareTag("canvas"))
         {
-            vCol = true;
+            hiseGenerator.dodajHis = true;
         }
     }
 
