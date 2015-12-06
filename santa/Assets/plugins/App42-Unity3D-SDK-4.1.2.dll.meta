@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 77fb1b530244bc34eb324ab428ac475e
-timeCreated: 1449414269
+guid: 0f4c9947a49c0b14b8bf06709a1121db
+timeCreated: 1449438565
 licenseType: Free
 PluginImporter:
   serializedVersion: 1
@@ -13,10 +13,10 @@ PluginImporter:
       settings:
         CPU: AnyCPU
     Any:
-      enabled: 0
+      enabled: 1
       settings: {}
     Editor:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: AnyCPU
         DefaultValueInitialized: true
@@ -46,7 +46,7 @@ PluginImporter:
       settings:
         CPU: AnyCPU
         DontProcess: False
-        PlaceholderPath: Assets/plugins/win8/UnityPluginForWindowsPhone.dll
+        PlaceholderPath: 
     Win:
       enabled: 0
       settings:
