@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class menuSkripta : MonoBehaviour {
 
@@ -13,12 +14,36 @@ public class menuSkripta : MonoBehaviour {
     static GameObject menu;
 
     AudioListener audio;
+    public Toggle zvokTog;
+
+    void Awake()
+    {
+        audio = gameObject.GetComponent<AudioListener>();
+        if (PlayerPrefs.HasKey("zvok"))
+        {
+            if (PlayerPrefs.GetInt("zvok") > 0)
+            {
+                //audio.enabled = true;
+                //zvokTog.isOn = true;
+            }
+            else
+            {
+                //audio.enabled = false;
+                PlayerPrefs.SetInt("zvok", 1);
+                zvokTog.isOn = false;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("zvok", 1);
+        }
+    }
     
 	void Start () {
         santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         playG = playGumb;
         menu = GameObject.Find("MENU");
-        audio = gameObject.GetComponent<AudioListener>();
+        
 	}
 	
 	// Update is called once per frame
@@ -58,7 +83,17 @@ public class menuSkripta : MonoBehaviour {
 
     public void ZVOK()
     {
-        audio.enabled = !audio.enabled;
-        Debug.Log("zvok");
+        if(PlayerPrefs.GetInt("zvok") > 0)
+        {
+            audio.enabled = false;
+            PlayerPrefs.SetInt("zvok", 0);
+            
+        }
+        else
+        {
+            audio.enabled = true;
+            PlayerPrefs.SetInt("zvok",1);
+        }
+        
     }
 }

@@ -10,6 +10,8 @@ public class powerSkripta : MonoBehaviour {
     public static float skalar = 0;
     int enable = 1;
     RectTransform rectCanvas;
+    public static int ponastavi = 0;
+    
 	void Start () {
         GameObject canvas = GameObject.Find("Canvas");
         rectCanvas = canvas.GetComponent<RectTransform>();
@@ -21,6 +23,7 @@ public class powerSkripta : MonoBehaviour {
             powers2[i].GetComponent<subPower>().power = GetComponent<powerSkripta>();
         }
         nextPowerUp = Random.Range(1, 5);
+        
 	}
 	
 	// Update is called once per frame
@@ -30,6 +33,14 @@ public class powerSkripta : MonoBehaviour {
         {
             sproziPower();
             enable = 0;
+        }
+        if (ponastavi > 0)
+        {
+            for(int i=0; i < powers2.Length; i++)
+            {
+                powers2[i].SetActive(false);
+            }
+            ponastavi--;
         }
 	}
 

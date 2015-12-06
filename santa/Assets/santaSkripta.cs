@@ -30,7 +30,7 @@ public class santaSkripta : MonoBehaviour {
         {
             seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
         }
-        GetComponent<RectTransform>().localPosition = new Vector3(212,-37,0);
+        GetComponent<RectTransform>().localPosition = new Vector3(212,-300,0);
         //hpText.text = "HP " + hp;
     }
 	
@@ -86,8 +86,15 @@ public class santaSkripta : MonoBehaviour {
             {
                 igranje = false;
                 //hisoDodaj.SetActive(false);
+                for(int i=0; i < seznamDaril.Length; i++)
+                {
+                    if(seznamDaril[i].activeSelf)
+                        seznamDaril[i].SetActive(false);
+                }
+                powerSkripta.ponastavi = 3;
                 menuSkripta.loose();
                 powerSkripta.skalar = 0;
+
             }
         }
         

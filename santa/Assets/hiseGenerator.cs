@@ -17,6 +17,7 @@ public class hiseGenerator : MonoBehaviour {
     int idHis = 0;
     public static bool dodajHis = false;
     Transform trZadnja;
+    int iDzadnja = 0;
 
 	void Start () {
         parentC = transform.parent.GetComponent<RectTransform>();
@@ -56,7 +57,7 @@ public class hiseGenerator : MonoBehaviour {
             t.GetComponent<RectTransform>();
             zac.GetComponent<RectTransform>().localPosition = pos;
             zac.SetActive(true);
-            //zac.GetComponent<hisaSkripta>().IdHisa = idx;
+            zac.GetComponent<hisaSkripta>().IdHisa = iDzadnja;
             stevec++;
             
             Debug.Log(posTime + "time");
@@ -89,6 +90,7 @@ public class hiseGenerator : MonoBehaviour {
         {
             seznamHis[(stevec - 1) % seznamHis.Length].GetComponent<hisaSkripta>().IdHisa = idHis;
         }
+        iDzadnja = idHis;
         stevec++;
         
 
