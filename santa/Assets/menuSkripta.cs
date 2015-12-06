@@ -10,10 +10,15 @@ public class menuSkripta : MonoBehaviour {
     santaSkripta santa;
 
     static GameObject playG;
+    static GameObject menu;
+
+    AudioListener audio;
+    
 	void Start () {
         santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         playG = playGumb;
-        
+        menu = GameObject.Find("MENU");
+        audio = gameObject.GetComponent<AudioListener>();
 	}
 	
 	// Update is called once per frame
@@ -27,10 +32,33 @@ public class menuSkripta : MonoBehaviour {
         santa.ponastavi();
         hise.dodajPrvoHiso();
         santaSkripta.igranje = true;
+        menu.SetActive(false);
     }
 
     public static void loose()
     {
         playG.SetActive(true);
+        menu.SetActive(true);
+    }
+
+    public void RATE()
+    {
+
+    }
+
+    public void FB()
+    {
+
+    }
+
+    public void leader()
+    {
+
+    }
+
+    public void ZVOK()
+    {
+        audio.enabled = !audio.enabled;
+        Debug.Log("zvok");
     }
 }

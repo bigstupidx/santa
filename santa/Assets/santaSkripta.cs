@@ -30,7 +30,8 @@ public class santaSkripta : MonoBehaviour {
         {
             seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
         }
-        hpText.text = "HP " + hp;
+        GetComponent<RectTransform>().localPosition = new Vector3(212,-37,0);
+        //hpText.text = "HP " + hp;
     }
 	
 	// Update is called once per frame
@@ -54,7 +55,7 @@ public class santaSkripta : MonoBehaviour {
             
             seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
             seznamDaril[stevec].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, 0), ForceMode2D.Impulse);
+            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(4, 0.2f), ForceMode2D.Impulse);
             stevec++;
             stevec %= seznamDaril.Length;
         }
@@ -111,7 +112,7 @@ public class santaSkripta : MonoBehaviour {
             if(status == "hp")
             {
                 hp++;
-                hpText.text = "HP " + hp;
+                //hpText.text = "HP " + hp;
             }else if(status == "scit")
             {
                 scit = 5;
@@ -134,7 +135,7 @@ public class santaSkripta : MonoBehaviour {
         stZgresitev = 0;
         hp = 1;
         //hisoDodaj.SetActive(true);
-        hpText.text = "HP " + hp;
+        //hpText.text = "HP " + hp;
         score.text = "SCORE: " + stZadetkov;
     }
 }
