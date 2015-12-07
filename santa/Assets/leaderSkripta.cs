@@ -25,14 +25,19 @@ public class leaderSkripta : MonoBehaviour
     public static int gameScore;
 
     public Text userRank;
+    public static Text rank;
 
     public static string recivedUser = null;
     public static string recivedScore = null;
     // Use this for initialization
+
+    public GameObject signIn;
+    public GameObject leaderTabela;
+    public InputField input;
     
 	void Start () {
         App42API.Initialize("d7c45a342781ca01c76b67ae107ef645816d0cae6ff2a12cecbb310fd4f94261", "c75984ec945c84d924f97577d6a07cf12d375f433117734de67d1cc43fd91604");
-
+        rank = userRank;
     }
 	
 	// Update is called once per frame
@@ -48,7 +53,7 @@ public class leaderSkripta : MonoBehaviour
 			saveScore=false;
 			if(PlayerPrefs.HasKey("user") && PlayerPrefs.HasKey("score")){
 				ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();   
-				scoreBoardService.SaveUserScore("duckUnder", PlayerPrefs.GetString("user"), PlayerPrefs.GetInt("score"), new UnityCallBackSaveScore()); 
+				scoreBoardService.SaveUserScore("mordenSenta", PlayerPrefs.GetString("user"), PlayerPrefs.GetInt("score"), new UnityCallBackSaveScore()); 
 			}
 		}
 
@@ -56,19 +61,22 @@ public class leaderSkripta : MonoBehaviour
 			getUserRank=false;
 				if(PlayerPrefs.HasKey("user")){
 				ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();   
-				scoreBoardService.GetUserRanking("duckUnder", PlayerPrefs.GetString("user"), new UnityCallBackGetUserRank());  
+				scoreBoardService.GetUserRanking("mordenSenta", PlayerPrefs.GetString("user"), new UnityCallBackGetUserRank());  
 			}
 		}
 
 		if (getTopNRanks) {
 			getTopNRanks=false;
 			ScoreBoardService scoreBoardService = App42API.BuildScoreBoardService();   
-			scoreBoardService.GetTopNRankers("duckUnder", 10, new UnityCallBackGetTopRanks()); 
+			scoreBoardService.GetTopNRankers("mordenSenta", 10, new UnityCallBackGetTopRanks()); 
 		}
 
 		if (recivedUser != null) {
 			saveScore=true;
 			recivedUser=null;
+            signIn.SetActive(false);
+            leaderTabela.SetActive(true);
+            PlayerPrefs.SetString("user", userName);
 
 		}
 		if (recivedScore != null) {
@@ -77,6 +85,18 @@ public class leaderSkripta : MonoBehaviour
 		}
 	
 	}
+
+    public void createUserfun()
+    {
+        createUser = true;
+        if(input.text.Length > 3 && input.text.Length < 15)
+        {
+            userName = input.text;
+        }
+        
+    }
+
+    
 
 
 }
@@ -132,7 +152,8 @@ public class UnityCallBackGetUserRank : App42CallBack
 			App42Log.Console("scoreId is : " + game.GetScoreList()[i].GetScoreId());  
 
 			PlayerPrefs.SetInt("rank",Int32.Parse(game.GetScoreList()[i].GetRank()));
-		}  
+            leaderSkripta.rank.text = PlayerPrefs.GetInt("rank")+"";
+        }  
 	}  
 	
 	public void OnException(Exception e)  
@@ -156,7 +177,7 @@ public class UnityCallBackGetTopRanks : App42CallBack
 			leaderSkripta.imeR[i] = game.GetScoreList()[i].GetUserName();
 			leaderSkripta.scoreR[i] = game.GetScoreList()[i].GetValue()+"";
 		}  
-		//MeniSkripta.posodobiLeader = true;
+		menuSkripta.posodobiLeader = true;
 	}  
 	
 	public void OnException(Exception e)  

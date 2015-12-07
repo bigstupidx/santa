@@ -22,8 +22,15 @@ public class santaSkripta : MonoBehaviour {
     float scit = 0;
     float dvojne = 0;
     float hitrost = 0;
+    int rezultat = 0;
     static public bool igranje = false;
 	void Start () {
+        if (!PlayerPrefs.HasKey("score"))
+        {
+            PlayerPrefs.SetInt("score", 0);
+
+        }
+        zmaga();
         hisoDodaj = GameObject.Find("dodajHiso");
         seznamDaril = new GameObject[30];
         for(int i=0; i < seznamDaril.Length; i++)
@@ -31,6 +38,7 @@ public class santaSkripta : MonoBehaviour {
             seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
         }
         GetComponent<RectTransform>().localPosition = new Vector3(212,-300,0);
+        
         //hpText.text = "HP " + hp;
     }
 	
@@ -144,5 +152,15 @@ public class santaSkripta : MonoBehaviour {
         //hisoDodaj.SetActive(true);
         //hpText.text = "HP " + hp;
         score.text = "SCORE: " + stZadetkov;
+    }
+
+    public void zmaga()
+    {
+        if(PlayerPrefs.GetInt("score") <= rezultat && PlayerPrefs.HasKey("user"))
+        {
+            PlayerPrefs.SetInt("score", rezultat);
+            leaderSkripta.saveScore = true;
+        }
+        
     }
 }

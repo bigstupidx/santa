@@ -16,6 +16,13 @@ public class menuSkripta : MonoBehaviour {
     AudioListener audio;
     public Toggle zvokTog;
 
+    public static bool posodobiLeader = false;
+
+    public Text[] imena;
+    public Text[] scori;
+
+    public GameObject leaderTabela;
+    public GameObject signIN;
     void Awake()
     {
         audio = gameObject.GetComponent<AudioListener>();
@@ -48,7 +55,16 @@ public class menuSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (posodobiLeader)
+        {
+            posodobiLeader = false;
+            for(int i=0; i < scori.Length; i++)
+            {
+                scori[i].text = leaderSkripta.scoreR[i];
+                imena[i].text = leaderSkripta.imeR[i];
+            }
+
+        }
 	}
 
     public void play()
@@ -78,7 +94,20 @@ public class menuSkripta : MonoBehaviour {
 
     public void leader()
     {
-
+        if(leaderTabela.activeSelf || signIN.activeSelf)
+        {
+            leaderTabela.SetActive(false);
+            signIN.SetActive(false);
+        }
+        else if (PlayerPrefs.HasKey("user") )
+        {
+            leaderTabela.SetActive(true);
+            leaderSkripta.getTopNRanks = true;
+        }
+        else
+        {
+            signIN.SetActive(true);
+        }
     }
 
     public void ZVOK()
