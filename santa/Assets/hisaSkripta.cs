@@ -12,7 +12,7 @@ public class hisaSkripta : MonoBehaviour {
     RectTransform rectMe;
     void Start () {
         rectMe = GetComponent<RectTransform>();
-        rectCanvas = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        rectCanvas = GameObject.Find("Canvas GAMEPLAY").GetComponent<RectTransform>();
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
         gameObject.SetActive(false);
 	}

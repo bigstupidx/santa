@@ -13,7 +13,7 @@ public class powerSkripta : MonoBehaviour {
     public static int ponastavi = 0;
     
 	void Start () {
-        GameObject canvas = GameObject.Find("Canvas");
+        GameObject canvas = GameObject.Find("Canvas GAMEPLAY");
         rectCanvas = canvas.GetComponent<RectTransform>();
         powers2 = new GameObject[powers.Length];
         for(int i=0; i < powers2.Length; i++)
