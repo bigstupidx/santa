@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: b2d2a2f4c418d46428ee5f4a66467b67
-timeCreated: 1448758046
+timeCreated: 1449593067
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playGumb: {instanceID: 0}
+  - hise: {instanceID: 0}
+  - zvokTog: {instanceID: 0}
+  - leaderTabela: {fileID: 189278, guid: eb2fb675c715536468536812a314468a, type: 2}
+  - signIN: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
