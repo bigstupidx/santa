@@ -24,6 +24,10 @@ public class santaSkripta : MonoBehaviour {
     float hitrost = 0;
     int rezultat = 0;
     static public bool igranje = false;
+    float casDarila = 0;
+
+    bool vVisave = false;
+    float cilj = 0;
 	void Start () {
         if (!PlayerPrefs.HasKey("score"))
         {
@@ -38,25 +42,15 @@ public class santaSkripta : MonoBehaviour {
             seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
         }
         GetComponent<RectTransform>().localPosition = new Vector3(212,-300,0);
+        cilj = GetComponent<RectTransform>().localPosition.y;
         
         //hpText.text = "HP " + hp;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //foreach (Touch touch in Input.touches)
-        //{
-        //    if (touch.phase == TouchPhase.Began)
-        //    {
-        //        seznamDaril[stevec].SetActive(true);
-        //        seznamDaril[stevec].transform.position = transform.position;
-        //        seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
-        //        stevec++;
-        //        stevec %= seznamDaril.Length;
-        //    }
-        //}
         novoStanje = Input.GetMouseButtonDown(0);
-        if (novoStanje && !staroStanje && igranje)
+        if (novoStanje && !staroStanje && igranje && casDarila <= 0)
         {
             seznamDaril[stevec].SetActive(true);
             seznamDaril[stevec].transform.position = transform.position;
@@ -66,6 +60,10 @@ public class santaSkripta : MonoBehaviour {
             seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(4, 0.2f), ForceMode2D.Impulse);
             stevec++;
             stevec %= seznamDaril.Length;
+            casDarila = 0.25f;
+        }else if(casDarila > 0)
+        {
+            casDarila -= Time.deltaTime;
         }
         staroStanje = novoStanje;
         if(scit > 0)
@@ -81,6 +79,18 @@ public class santaSkripta : MonoBehaviour {
             hitrost -= Time.deltaTime;
             hiseGenerator.speedP = 1.3f;
         }
+
+        if (vVisave)
+        {
+            if(cilj > gameObject.GetComponent<RectTransform>().localPosition.y)
+            {
+                gameObject.GetComponent<RectTransform>().localPosition += transform.up * Time.deltaTime * 190;
+            }
+            else
+            {
+                vVisave = false;
+            }
+        }
     }
 
     public void zgresitev()
@@ -90,20 +100,28 @@ public class santaSkripta : MonoBehaviour {
             stZgresitev++;
             hp--;
             hpText.text = "HP " + hp;
-            if (hp <= 0)
+            if(cilj > 550)
             {
                 igranje = false;
                 //hisoDodaj.SetActive(false);
-                for(int i=0; i < seznamDaril.Length; i++)
+                for (int i = 0; i < seznamDaril.Length; i++)
                 {
-                    if(seznamDaril[i].activeSelf)
+                    if (seznamDaril[i].activeSelf)
                         seznamDaril[i].SetActive(false);
                 }
                 powerSkripta.ponastavi = 3;
                 menuSkripta.loose();
                 powerSkripta.skalar = 0;
-
+                cilj += 300;
+                vVisave = true;
             }
+            else
+            {
+                cilj += 100;
+                vVisave = true;
+            }
+            
+            
         }
         
     }
