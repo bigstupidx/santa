@@ -19,6 +19,7 @@ public class santaSkripta : MonoBehaviour {
     public Text hpText;
 
     GameObject hisoDodaj;
+    menuSkripta menuSkript;
     float scit = 0;
     float dvojne = 0;
     float hitrost = 0;
@@ -34,6 +35,7 @@ public class santaSkripta : MonoBehaviour {
             PlayerPrefs.SetInt("score", 0);
 
         }
+        menuSkript = GameObject.Find("Main Camera").GetComponent<menuSkripta>();
         zmaga();
         hisoDodaj = GameObject.Find("dodajHiso");
         seznamDaril = new GameObject[30];
@@ -97,31 +99,14 @@ public class santaSkripta : MonoBehaviour {
     {
         if(scit <= 0)
         {
-            stZgresitev++;
-            hp--;
-            hpText.text = "HP " + hp;
-            if(cilj > 550)
-            {
-                igranje = false;
-                //hisoDodaj.SetActive(false);
-                for (int i = 0; i < seznamDaril.Length; i++)
-                {
-                    if (seznamDaril[i].activeSelf)
-                        seznamDaril[i].SetActive(false);
-                }
-                powerSkripta.ponastavi = 3;
-                menuSkripta.loose();
-                powerSkripta.skalar = 0;
-                cilj += 300;
-                vVisave = true;
-            }
-            else
-            {
-                cilj += 100;
-                vVisave = true;
-            }
+            //stZgresitev++;
+            //hp--;
+            //hpText.text = "HP " + hp;
             
-            
+
+            cilj += 100;
+            vVisave = true;
+
         }
         
     }
@@ -157,6 +142,33 @@ public class santaSkripta : MonoBehaviour {
                 hitrost = 3;
             }
             other.GetComponent<subPower>().power.nastaviSkalar();
+        }else if (other.CompareTag("desniCol"))
+        {
+            igranje = false;
+            //hisoDodaj.SetActive(false);
+            for (int i = 0; i < seznamDaril.Length; i++)
+            {
+                if (seznamDaril[i].activeSelf)
+                    seznamDaril[i].SetActive(false);
+            }
+            powerSkripta.ponastavi = 3;
+            menuSkript.looseDesno();
+            powerSkripta.skalar = 0;
+        }
+        else if (other.CompareTag("zgorniCol"))
+        {
+            igranje = false;
+            //hisoDodaj.SetActive(false);
+            for (int i = 0; i < seznamDaril.Length; i++)
+            {
+                if (seznamDaril[i].activeSelf)
+                    seznamDaril[i].SetActive(false);
+            }
+            powerSkripta.ponastavi = 3;
+            menuSkript.loose();
+            powerSkripta.skalar = 0;
+            cilj += 300;
+            vVisave = true;
         }
             
     }
@@ -170,6 +182,8 @@ public class santaSkripta : MonoBehaviour {
         //hisoDodaj.SetActive(true);
         //hpText.text = "HP " + hp;
         score.text = "SCORE: " + stZadetkov;
+        GetComponent<RectTransform>().localPosition = new Vector3(212, -300, 0);
+        cilj = GetComponent<RectTransform>().localPosition.y;
     }
 
     public void zmaga()

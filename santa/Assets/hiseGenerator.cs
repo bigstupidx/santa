@@ -18,6 +18,7 @@ public class hiseGenerator : MonoBehaviour {
     public static bool dodajHis = false;
     Transform trZadnja;
     int iDzadnja = 0;
+   
 
 	void Start () {
         parentC = transform.parent.GetComponent<RectTransform>();
@@ -71,25 +72,25 @@ public class hiseGenerator : MonoBehaviour {
 
     public void dodajPrvoHiso()
     {
+
         speedP = 1;
         idHis++;
-        if (stevec == 0 || !seznamHis[(stevec-1) % seznamHis.Length].GetComponent<hisaSkripta>().vCol)
-        {
-            GameObject zac = seznamHis[stevec % seznamHis.Length];
-            zac.SetActive(true);
+        
+        
+        GameObject zac = seznamHis[stevec % seznamHis.Length];
+        zac.SetActive(true);
             
-            RectTransform rt = zac.GetComponent<RectTransform>();
-            rt.localPosition = new Vector3(parentC.sizeDelta.x/2 + rt.sizeDelta.x/2, -parentC.sizeDelta.y/2 + rt.sizeDelta.y/2);
+        RectTransform rt = zac.GetComponent<RectTransform>();
+        Vector3 pos = new Vector3(parentC.sizeDelta.x / 2 + rt.sizeDelta.x / 2, -parentC.sizeDelta.y / 2 + rt.sizeDelta.y / 2);
+        pos.x += (parentC.localPosition - transform.localPosition).x;
+        rt.localPosition = pos;
             
-            zac.GetComponent<hisaSkripta>().IdHisa = idHis;
-            //zac.GetComponent<Collider2D>().enabled = true;
-            trZadnja = zac.transform;
-            posTime = Time.time;
-        }
-        else
-        {
-            seznamHis[(stevec - 1) % seznamHis.Length].GetComponent<hisaSkripta>().IdHisa = idHis;
-        }
+        zac.GetComponent<hisaSkripta>().IdHisa = idHis;
+        //zac.GetComponent<Collider2D>().enabled = true;
+        trZadnja = zac.transform;
+        posTime = Time.time;
+        
+        
         iDzadnja = idHis;
         stevec++;
         

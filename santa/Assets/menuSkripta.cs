@@ -24,6 +24,7 @@ public class menuSkripta : MonoBehaviour {
     public Text[] imena;
     public Text[] scori;
 
+    public GameObject prviPlayGumb;
     public GameObject leaderTabela;
     public GameObject signIN;
     public GameObject CanvasGamplay;
@@ -33,9 +34,14 @@ public class menuSkripta : MonoBehaviour {
     public GameObject canvasScore;
     public GameObject restartCas;
     public GameObject restartVis;
+    public GameObject NoInternet;
+    public GameObject tabelaBoard;
 
     public Animator image1;
     public Animator image2;
+
+    public Animator snezinke1;
+    public Animator snezinke2;
 
     public GameObject[] napisi;
 
@@ -77,6 +83,10 @@ public class menuSkripta : MonoBehaviour {
 	void Update () {
         if (posodobiLeader)
         {
+            NoInternet.SetActive(false);
+            tabelaBoard.SetActive(true);
+            
+            
             posodobiLeader = false;
             for(int i=0; i < scori.Length; i++)
             {
@@ -86,14 +96,6 @@ public class menuSkripta : MonoBehaviour {
 
         }
 
-        if(cas <= 0)
-        {
-            konecCas();
-        }
-        if (CanvasGamplay.activeSelf)
-        {
-            cas -= Time.deltaTime;
-        }
         
 	}
 
@@ -102,6 +104,8 @@ public class menuSkripta : MonoBehaviour {
         canvasStatic.SetActive(false);
         image1.enabled = true;
         image2.enabled = true;
+        snezinke1.enabled = true;
+        snezinke2.enabled = true;
         CanvasAnimacija.SetActive(true);
         CanvasPrviPlay.SetActive(false);
         CanvasGamplay.SetActive(true);
@@ -115,10 +119,16 @@ public class menuSkripta : MonoBehaviour {
         //menu.SetActive(false);
     }
 
-    public static void loose()
+    public void loose()
     {
-        playG.SetActive(true);
-        menu.SetActive(true);
+        napisi[3].SetActive(false);
+        restartVis.SetActive(true);
+    }
+
+    public void looseDesno()
+    {
+        restartCas.SetActive(true);
+        napisi[3].SetActive(false);
     }
 
     public void RATE()
@@ -133,17 +143,23 @@ public class menuSkripta : MonoBehaviour {
 
     public void leader()
     {
-        if(leaderTabela.activeSelf || signIN.activeSelf)
+        if(leaderTabela.activeSelf || signIN.activeSelf || NoInternet.activeSelf)
         {
             leaderTabela.SetActive(false);
             signIN.SetActive(false);
-            foreach(GameObject g in list)
+            NoInternet.SetActive(false);
+
+            foreach (GameObject g in list)
             {
                 g.SetActive(true);
             }
+            prviPlayGumb.SetActive(true);
+            
         }
         else if (PlayerPrefs.HasKey("user") )
         {
+            tabelaBoard.SetActive(false);
+            NoInternet.SetActive(true);
             leaderTabela.SetActive(true);
             leaderSkripta.getTopNRanks = true;
             for(int i=0; i < napisi.Length; i++)
@@ -154,10 +170,12 @@ public class menuSkripta : MonoBehaviour {
                     napisi[i].SetActive(false);
                 }
             }
+            prviPlayGumb.SetActive(false);
         }
         else
         {
             signIN.SetActive(true);
+            prviPlayGumb.SetActive(false);
         }
     }
 
@@ -184,18 +202,24 @@ public class menuSkripta : MonoBehaviour {
 
         image1.enabled = true;
         image2.enabled = true;
+        snezinke1.enabled = false;
+        snezinke1.enabled = true;
+        snezinke2.enabled = false;
+        snezinke2.enabled = true;
         CanvasAnimacija.SetActive(false);
         CanvasAnimacija.SetActive(true);
         canvasScore.SetActive(false);
+        CanvasGamplay.SetActive(false);
+        CanvasGamplay.SetActive(true);
+        restartCas.SetActive(false);
+        restartVis.SetActive(false);
         cas = zacCas;
         santa.ponastavi();
         hise.dodajPrvoHiso();
         santaSkripta.igranje = true;
         canvasScore.SetActive(true);
         napisi[3].SetActive(true);
-        CanvasGamplay.SetActive(true);
-        restartCas.SetActive(false);
-        restartVis.SetActive(false);
+        
         
     }
 
