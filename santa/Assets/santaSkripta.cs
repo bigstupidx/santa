@@ -55,11 +55,11 @@ public class santaSkripta : MonoBehaviour {
         if (novoStanje && !staroStanje && igranje && casDarila <= 0)
         {
             seznamDaril[stevec].SetActive(true);
-            seznamDaril[stevec].transform.position = transform.position;
+            seznamDaril[stevec].GetComponent<RectTransform>().position = gameObject.GetComponent<RectTransform>().position;
             
             seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
             seznamDaril[stevec].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(4, 0.2f), ForceMode2D.Impulse);
+            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 3.2f), ForceMode2D.Impulse);
             stevec++;
             stevec %= seznamDaril.Length;
             casDarila = 0.25f;
