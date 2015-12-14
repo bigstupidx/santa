@@ -43,7 +43,7 @@ public class santaSkripta : MonoBehaviour {
         {
             seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
         }
-        GetComponent<RectTransform>().localPosition = new Vector3(212,-300,0);
+        GetComponent<RectTransform>().localPosition = new Vector3(212, 13,0);
         cilj = GetComponent<RectTransform>().localPosition.y;
         
         //hpText.text = "HP " + hp;
@@ -182,7 +182,7 @@ public class santaSkripta : MonoBehaviour {
         //hisoDodaj.SetActive(true);
         //hpText.text = "HP " + hp;
         score.text = "SCORE: " + stZadetkov;
-        GetComponent<RectTransform>().localPosition = new Vector3(212, -300, 0);
+        GetComponent<RectTransform>().localPosition = new Vector3(212, 13, 0);
         cilj = GetComponent<RectTransform>().localPosition.y;
     }
 
