@@ -12,6 +12,7 @@ public class reklameSkripta : MonoBehaviour {
 
 	void Start () {
         UnityPluginForWindowsPhone.Class1.konstruktor("ca-app-pub-6604259944075538/1324230402", true);
+        
         UnityPluginForWindowsPhone.Class1.loadCelozaslonsko();
         
     }
@@ -22,12 +23,14 @@ public class reklameSkripta : MonoBehaviour {
         {
             showReklamo = false;
             UnityPluginForWindowsPhone.Class1.showCelozaslonsko();
+            Debug.Log("show celo");
         }
 
         if (naloziReklamo)
         {
             naloziReklamo = false;
             UnityPluginForWindowsPhone.Class1.loadCelozaslonsko();
+            Debug.Log("nalozi reklamo");
         }
        
 	}
