@@ -23,6 +23,8 @@ public class menuSkripta : MonoBehaviour {
 
     public Text[] imena;
     public Text[] scori;
+    public Text rank;
+    
 
     public GameObject prviPlayGumb;
     public GameObject leaderTabela;
@@ -36,6 +38,7 @@ public class menuSkripta : MonoBehaviour {
     public GameObject restartVis;
     public GameObject NoInternet;
     public GameObject tabelaBoard;
+    
 
     public Animator image1;
     public Animator image2;
@@ -77,7 +80,8 @@ public class menuSkripta : MonoBehaviour {
         CanvasGamplay.SetActive(false);
         zacCas = cas;
         list = new List<GameObject>();
-	}
+        leaderSkripta.getUserRank = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {

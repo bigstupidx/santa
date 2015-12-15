@@ -16,6 +16,8 @@ public class santaSkripta : MonoBehaviour {
     int stZgresitev = 0;
     int hp = 1;
     public Text score;
+    public Text scoreCas;
+    public Text scoreVis;
     public Text hpText;
 
     GameObject hisoDodaj;
@@ -35,6 +37,7 @@ public class santaSkripta : MonoBehaviour {
             PlayerPrefs.SetInt("score", 0);
 
         }
+        
         menuSkript = GameObject.Find("Main Camera").GetComponent<menuSkripta>();
         zmaga();
         hisoDodaj = GameObject.Find("dodajHiso");
@@ -119,6 +122,8 @@ public class santaSkripta : MonoBehaviour {
         }
         stZadetkov++;
         score.text = "SCORE: " + stZadetkov;
+        scoreCas.text = "SCORE: " + stZadetkov;
+        scoreVis.text = "SCORE: " + stZadetkov;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -144,6 +149,7 @@ public class santaSkripta : MonoBehaviour {
             other.GetComponent<subPower>().power.nastaviSkalar();
         }else if (other.CompareTag("desniCol"))
         {
+            zmaga();
             igranje = false;
             //hisoDodaj.SetActive(false);
             for (int i = 0; i < seznamDaril.Length; i++)
@@ -157,6 +163,7 @@ public class santaSkripta : MonoBehaviour {
         }
         else if (other.CompareTag("zgorniCol"))
         {
+            zmaga();
             igranje = false;
             //hisoDodaj.SetActive(false);
             for (int i = 0; i < seznamDaril.Length; i++)
@@ -182,15 +189,21 @@ public class santaSkripta : MonoBehaviour {
         //hisoDodaj.SetActive(true);
         //hpText.text = "HP " + hp;
         score.text = "SCORE: " + stZadetkov;
+        scoreCas.text = "SCORE: " + stZadetkov;
+        scoreVis.text = "SCORE: " + stZadetkov;
         GetComponent<RectTransform>().localPosition = new Vector3(212, 13, 0);
         cilj = GetComponent<RectTransform>().localPosition.y;
+        reklameSkripta.naloziReklamo = true;
     }
 
     public void zmaga()
     {
-        if(PlayerPrefs.GetInt("score") <= rezultat && PlayerPrefs.HasKey("user"))
+        if(Random.value < 0.15f)
+            reklameSkripta.showReklamo = true;
+        if(PlayerPrefs.GetInt("score") <= stZadetkov && PlayerPrefs.HasKey("user"))
         {
-            PlayerPrefs.SetInt("score", rezultat);
+            PlayerPrefs.SetInt("score", stZadetkov);
+
             leaderSkripta.saveScore = true;
         }
         

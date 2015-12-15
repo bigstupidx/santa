@@ -41,6 +41,7 @@ public class dariloSkripta : MonoBehaviour {
     {
         if(other.tag == "dimnik")
         {
+            other.transform.parent.GetComponent<hisaSkripta>().sproziAnimator();
             santa.zadetek();
             gameObject.SetActive(false);
         }else if(other.tag == "spodniCol")

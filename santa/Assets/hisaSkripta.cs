@@ -10,11 +10,13 @@ public class hisaSkripta : MonoBehaviour {
     public bool vCol = false;
     RectTransform rectCanvas;
     RectTransform rectMe;
+    Animator animator;
     void Start () {
         rectMe = GetComponent<RectTransform>();
         rectCanvas = GameObject.Find("Canvas GAMEPLAY").GetComponent<RectTransform>();
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
         gameObject.SetActive(false);
+        animator = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -38,6 +40,13 @@ public class hisaSkripta : MonoBehaviour {
         {
             hiseGenerator.dodajHis = true;
         }
+        
+    }
+
+    public void sproziAnimator()
+    {
+        animator.enabled = false;
+        animator.enabled = true;
     }
 
 
