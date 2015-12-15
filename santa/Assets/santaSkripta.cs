@@ -31,6 +31,7 @@ public class santaSkripta : MonoBehaviour {
 
     bool vVisave = false;
     float cilj = 0;
+    int colStanje = 0;
 	void Start () {
         if (!PlayerPrefs.HasKey("score"))
         {
@@ -147,8 +148,9 @@ public class santaSkripta : MonoBehaviour {
                 hitrost = 3;
             }
             other.GetComponent<subPower>().power.nastaviSkalar();
-        }else if (other.CompareTag("desniCol"))
+        }else if (other.CompareTag("desniCol") && colStanje == 0)
         {
+            colStanje = 1;
             zmaga();
             igranje = false;
             //hisoDodaj.SetActive(false);
@@ -161,8 +163,9 @@ public class santaSkripta : MonoBehaviour {
             menuSkript.looseDesno();
             powerSkripta.skalar = 0;
         }
-        else if (other.CompareTag("zgorniCol"))
+        else if (other.CompareTag("zgorniCol") && colStanje == 0)
         {
+            colStanje = 2;
             zmaga();
             igranje = false;
             //hisoDodaj.SetActive(false);
@@ -182,6 +185,7 @@ public class santaSkripta : MonoBehaviour {
 
     public void ponastavi()
     {
+        colStanje = 0;
         powerSkripta.skalar = 1;
         stZadetkov = 0;
         stZgresitev = 0;
