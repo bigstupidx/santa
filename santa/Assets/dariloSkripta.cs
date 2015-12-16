@@ -7,14 +7,18 @@ public class dariloSkripta : MonoBehaviour {
     GameObject mapGenerator;
     public santaSkripta santa;
     public float speed = 5;
-	void Start () {
+    void Awake()
+    {
         gameObject.SetActive(false);
         mapGenerator = GameObject.Find("Hise");
         santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         transform.parent = mapGenerator.transform.parent;
-       // transform.SetParent(mapGenerator.transform, false);
+        // transform.SetParent(mapGenerator.transform, false);
         GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         gameObject.SetActive(false);
+    }
+	void Start () {
+        
     }
 	
 	// Update is called once per frame

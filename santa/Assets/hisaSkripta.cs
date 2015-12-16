@@ -45,8 +45,12 @@ public class hisaSkripta : MonoBehaviour {
 
     public void sproziAnimator()
     {
-        animator.enabled = false;
-        animator.enabled = true;
+        if(animator != null)
+        {
+            animator.enabled = false;
+            animator.enabled = true;
+        }
+        
     }
 
 

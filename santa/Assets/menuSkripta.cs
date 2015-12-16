@@ -16,8 +16,10 @@ public class menuSkripta : MonoBehaviour {
     static GameObject playG;
     static GameObject menu;
 
-    AudioListener audio;
+    AudioListener audioB;
     public Toggle zvokTog;
+    public Toggle zvokTog2;
+    public Toggle zvokTog3;
 
     public static bool posodobiLeader = false;
 
@@ -47,12 +49,13 @@ public class menuSkripta : MonoBehaviour {
     public Animator snezinke2;
 
     public GameObject[] napisi;
+    public Toggle[] toogliButtoni;
 
     List<GameObject> list;
    
     void Awake()
     {
-        audio = gameObject.GetComponent<AudioListener>();
+        audioB = gameObject.GetComponent<AudioListener>();
         if (PlayerPrefs.HasKey("zvok"))
         {
             if (PlayerPrefs.GetInt("zvok") > 0)
@@ -65,11 +68,14 @@ public class menuSkripta : MonoBehaviour {
                 //audio.enabled = false;
                 PlayerPrefs.SetInt("zvok", 1);
                 zvokTog.isOn = false;
+                zvokTog2.isOn = false;
+                zvokTog3.isOn = false;
+
             }
         }
         else
         {
-            PlayerPrefs.SetInt("zvok", 1);
+            PlayerPrefs.SetInt("zvok", 0);
         }
     }
     
@@ -77,7 +83,7 @@ public class menuSkripta : MonoBehaviour {
         //santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         playG = playGumb;
         //menu = GameObject.Find("MENU");
-        CanvasGamplay.SetActive(false);
+        //CanvasGamplay.SetActive(false);
         zacCas = cas;
         list = new List<GameObject>();
         leaderSkripta.getUserRank = true;
@@ -99,9 +105,20 @@ public class menuSkripta : MonoBehaviour {
             }
 
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (leaderTabela.activeSelf)
+            {
+                //leaderTabela.SetActive(false);
+                for(int i=0; i < toogliButtoni.Length; i++)
+                {
+                    toogliButtoni[i].isOn = false;
+                }
+            }
+        }
 
-        
-	}
+
+    }
 
     public void play()
     {
@@ -112,7 +129,7 @@ public class menuSkripta : MonoBehaviour {
         snezinke2.enabled = true;
         CanvasAnimacija.SetActive(true);
         CanvasPrviPlay.SetActive(false);
-        CanvasGamplay.SetActive(true);
+        //CanvasGamplay.SetActive(true);
         playGumb.SetActive(false);
         santa.ponastavi();
         hise.dodajPrvoHiso();
@@ -120,6 +137,8 @@ public class menuSkripta : MonoBehaviour {
         canvasScore.SetActive(true);
         cas = zacCas;
         napisi[3].SetActive(true);
+        santaSkripta.odstevaj = true;
+        santaSkripta.prihod = true;
         //menu.SetActive(false);
     }
 
@@ -187,13 +206,13 @@ public class menuSkripta : MonoBehaviour {
     {
         if(PlayerPrefs.GetInt("zvok") > 0)
         {
-            audio.enabled = false;
+            AudioListener.volume = 0;
             PlayerPrefs.SetInt("zvok", 0);
             
         }
         else
         {
-            audio.enabled = true;
+            AudioListener.volume = 1;
             PlayerPrefs.SetInt("zvok",1);
         }
         
@@ -213,14 +232,15 @@ public class menuSkripta : MonoBehaviour {
         CanvasAnimacija.SetActive(false);
         CanvasAnimacija.SetActive(true);
         canvasScore.SetActive(false);
-        CanvasGamplay.SetActive(false);
-        CanvasGamplay.SetActive(true);
+        //CanvasGamplay.SetActive(false);
+        //CanvasGamplay.SetActive(true);
         restartCas.SetActive(false);
         restartVis.SetActive(false);
         cas = zacCas;
         santa.ponastavi();
         hise.dodajPrvoHiso();
         santaSkripta.igranje = true;
+        santaSkripta.prihod = true;
         canvasScore.SetActive(true);
         napisi[3].SetActive(true);
         
