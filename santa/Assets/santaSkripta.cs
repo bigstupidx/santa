@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class santaSkripta : MonoBehaviour {
 
     // Use this for initialization
+    public AudioClip spustVDimnik;
+    public AudioClip spustZgresitev;
     public GameObject[] darila;
     GameObject[] seznamDaril;
     int stevec = 0;
@@ -19,6 +21,7 @@ public class santaSkripta : MonoBehaviour {
     public Text scoreCas;
     public Text scoreVis;
     public Text hpText;
+    public float timeIgre = 60;
 
     GameObject hisoDodaj;
     menuSkripta menuSkript;
@@ -30,9 +33,24 @@ public class santaSkripta : MonoBehaviour {
     float casDarila = 0;
 
     bool vVisave = false;
+    bool levo = false;
+    float speedLeft=0;
+    float casLeft = 0;
+
+    bool desno = false;
+    float speedRight = 0;
+    float casRight = 0;
+
+    float casIgre = 0;
+    public static bool odstevaj = false;
+
+    public static bool prihod = false;
+    float speedPrihod = 200;
+
     float cilj = 0;
     int colStanje = 0;
 	void Start () {
+        casIgre = timeIgre;
         if (!PlayerPrefs.HasKey("score"))
         {
             PlayerPrefs.SetInt("score", 0);
@@ -47,7 +65,7 @@ public class santaSkripta : MonoBehaviour {
         {
             seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
         }
-        GetComponent<RectTransform>().localPosition = new Vector3(212, 13,0);
+        GetComponent<RectTransform>().localPosition = new Vector3(212-1000, 13,0);
         cilj = GetComponent<RectTransform>().localPosition.y;
         
         //hpText.text = "HP " + hp;
@@ -55,6 +73,16 @@ public class santaSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (odstevaj)
+        {
+            casIgre -= Time.deltaTime;
+            if(casIgre < 0)
+            {
+                desno = true;
+            }
+            
+        }
         novoStanje = Input.GetMouseButtonDown(0);
         if (novoStanje && !staroStanje && igranje && casDarila <= 0)
         {
@@ -96,12 +124,48 @@ public class santaSkripta : MonoBehaviour {
             {
                 vVisave = false;
             }
+        }else if (levo)
+        {
+            
+            Debug.Log("v levoooooooo");
+            casLeft += Time.deltaTime;
+            speedLeft = 50 * casLeft;
+            gameObject.GetComponent<RectTransform>().localPosition -= transform.right * speedLeft; 
+            if(casLeft > 2)
+            {
+                levo = false;
+                casLeft = 0;
+            }
+        }
+        else if (desno)
+        {
+
+            Debug.Log("v levoooooooo");
+            casRight += Time.deltaTime;
+            speedRight = 50 * casRight;
+            gameObject.GetComponent<RectTransform>().localPosition += transform.right * speedRight;
+            if (casRight > 2)
+            {
+                desno = false;
+                casRight = 0;
+
+            }
+        }else if (prihod)
+        {
+            Vector3 pos = gameObject.GetComponent<RectTransform>().localPosition;
+            float dis = (Mathf.Abs(212 - pos.x) / 1) * Time.deltaTime;
+            gameObject.GetComponent<RectTransform>().localPosition += transform.right * dis;
+            if(pos.x >= -212)
+            {
+                prihod = false;
+            }
         }
     }
 
     public void zgresitev()
     {
-        if(scit <= 0)
+        AudioSource.PlayClipAtPoint(spustZgresitev, Vector3.zero);
+        if (scit <= 0)
         {
             //stZgresitev++;
             //hp--;
@@ -117,6 +181,7 @@ public class santaSkripta : MonoBehaviour {
 
     public void zadetek()
     {
+        AudioSource.PlayClipAtPoint(spustVDimnik, Vector3.zero);
         if (dvojne > 0)
         {
             stZadetkov++;
@@ -162,6 +227,7 @@ public class santaSkripta : MonoBehaviour {
             powerSkripta.ponastavi = 3;
             menuSkript.looseDesno();
             powerSkripta.skalar = 0;
+            odstevaj = false;
         }
         else if (other.CompareTag("zgorniCol") && colStanje == 0)
         {
@@ -178,7 +244,9 @@ public class santaSkripta : MonoBehaviour {
             menuSkript.loose();
             powerSkripta.skalar = 0;
             cilj += 300;
-            vVisave = true;
+            vVisave = false;
+            levo = true;
+            
         }
             
     }
@@ -195,9 +263,19 @@ public class santaSkripta : MonoBehaviour {
         score.text = "" + stZadetkov;
         scoreCas.text = "" + stZadetkov;
         scoreVis.text = "" + stZadetkov;
-        GetComponent<RectTransform>().localPosition = new Vector3(212, 13, 0);
+        GetComponent<RectTransform>().localPosition = new Vector3(212-1000, 13, 0);
         cilj = GetComponent<RectTransform>().localPosition.y;
         reklameSkripta.naloziReklamo = true;
+
+        levo = false;
+        casLeft = 0;
+
+        desno = false;
+        casRight = 0;
+
+        casIgre = timeIgre;
+        odstevaj = true;
+
     }
 
     public void zmaga()
