@@ -11,12 +11,16 @@ public class hisaSkripta : MonoBehaviour {
     RectTransform rectCanvas;
     RectTransform rectMe;
     Animator animator;
-    void Start () {
+    void Awake()
+    {
         rectMe = GetComponent<RectTransform>();
         rectCanvas = GameObject.Find("Canvas GAMEPLAY").GetComponent<RectTransform>();
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
         gameObject.SetActive(false);
         animator = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Animator>();
+    }
+    void Start () {
+        
 	}
 	
 	// Update is called once per frame
