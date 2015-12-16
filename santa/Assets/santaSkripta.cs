@@ -122,9 +122,9 @@ public class santaSkripta : MonoBehaviour {
             stZadetkov++;
         }
         stZadetkov++;
-        score.text = "SCORE: " + stZadetkov;
-        scoreCas.text = "SCORE: " + stZadetkov;
-        scoreVis.text = "SCORE: " + stZadetkov;
+        score.text = "" + stZadetkov;
+        scoreCas.text = "" + stZadetkov;
+        scoreVis.text = "" + stZadetkov;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -192,9 +192,9 @@ public class santaSkripta : MonoBehaviour {
         hp = 1;
         //hisoDodaj.SetActive(true);
         //hpText.text = "HP " + hp;
-        score.text = "SCORE: " + stZadetkov;
-        scoreCas.text = "SCORE: " + stZadetkov;
-        scoreVis.text = "SCORE: " + stZadetkov;
+        score.text = "" + stZadetkov;
+        scoreCas.text = "" + stZadetkov;
+        scoreVis.text = "" + stZadetkov;
         GetComponent<RectTransform>().localPosition = new Vector3(212, 13, 0);
         cilj = GetComponent<RectTransform>().localPosition.y;
         reklameSkripta.naloziReklamo = true;
