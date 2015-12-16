@@ -48,7 +48,18 @@ public class santaSkripta : MonoBehaviour {
     float speedPrihod = 200;
 
     float cilj = 0;
-    int colStanje = 0;
+    int colStanje = -1;
+
+    void Awake()
+    {
+        GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
+        seznamDaril = new GameObject[30];
+        for (int i = 0; i < seznamDaril.Length; i++)
+        {
+            seznamDaril[i] = Instantiate(darila[Random.Range(0, darila.Length)]);
+        }
+        GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
+    }
 	void Start () {
         casIgre = timeIgre;
         if (!PlayerPrefs.HasKey("score"))
@@ -60,15 +71,11 @@ public class santaSkripta : MonoBehaviour {
         menuSkript = GameObject.Find("Main Camera").GetComponent<menuSkripta>();
         zmaga();
         hisoDodaj = GameObject.Find("dodajHiso");
-        seznamDaril = new GameObject[30];
-        for(int i=0; i < seznamDaril.Length; i++)
-        {
-            seznamDaril[i] = Instantiate(darila[Random.Range(0,darila.Length)]);
-        }
-        GetComponent<RectTransform>().localPosition = new Vector3(212-1000, 13,0);
-        cilj = GetComponent<RectTransform>().localPosition.y;
         
+        cilj = GetComponent<RectTransform>().localPosition.y;
+
         //hpText.text = "HP " + hp;
+        colStanje = 1;
     }
 	
 	// Update is called once per frame
@@ -280,7 +287,7 @@ public class santaSkripta : MonoBehaviour {
 
     public void zmaga()
     {
-        if(Random.value < 0.20f)
+        if(Random.value < 0.20f && colStanje != -1)
             reklameSkripta.showReklamo = true;
         if(PlayerPrefs.GetInt("score") <= stZadetkov && PlayerPrefs.HasKey("user"))
         {

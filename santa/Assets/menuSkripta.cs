@@ -40,6 +40,9 @@ public class menuSkripta : MonoBehaviour {
     public GameObject restartVis;
     public GameObject NoInternet;
     public GameObject tabelaBoard;
+
+    public GameObject spodnjiCol;
+    public GameObject zgorniCol;
     
 
     public Animator image1;
@@ -55,6 +58,7 @@ public class menuSkripta : MonoBehaviour {
    
     void Awake()
     {
+
         audioB = gameObject.GetComponent<AudioListener>();
         if (PlayerPrefs.HasKey("zvok"))
         {
@@ -87,6 +91,8 @@ public class menuSkripta : MonoBehaviour {
         zacCas = cas;
         list = new List<GameObject>();
         leaderSkripta.getUserRank = true;
+        spodnjiCol.SetActive(true);
+        zgorniCol.SetActive(true);
     }
 	
 	// Update is called once per frame
