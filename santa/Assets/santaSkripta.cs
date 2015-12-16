@@ -236,7 +236,7 @@ public class santaSkripta : MonoBehaviour {
             powerSkripta.skalar = 0;
             odstevaj = false;
         }
-        else if (other.CompareTag("zgorniCol") && colStanje == 0)
+        else if (other.CompareTag("zgorniCol") && colStanje == 1)
         {
             colStanje = 2;
             zmaga();

@@ -135,7 +135,7 @@ public class menuSkripta : MonoBehaviour {
         snezinke2.enabled = true;
         CanvasAnimacija.SetActive(true);
         CanvasPrviPlay.SetActive(false);
-        //CanvasGamplay.SetActive(true);
+        CanvasGamplay.SetActive(true);
         playGumb.SetActive(false);
         santa.ponastavi();
         hise.dodajPrvoHiso();
