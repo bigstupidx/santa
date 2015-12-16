@@ -280,7 +280,7 @@ public class santaSkripta : MonoBehaviour {
 
     public void zmaga()
     {
-        if(Random.value < 1.15f)
+        if(Random.value < 0.20f)
             reklameSkripta.showReklamo = true;
         if(PlayerPrefs.GetInt("score") <= stZadetkov && PlayerPrefs.HasKey("user"))
         {
