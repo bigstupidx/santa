@@ -125,14 +125,14 @@ public class UnityCallBackCreateUser : App42CallBack
 		App42Log.Console("Exception : " + e);
         if ((e + "").Contains(@"""appErrorCode"":""2001"""))
         {
-            menuSkripta.errorstat.text = "USERNAME TAKEN";
+            menuSkripta.errorstat.text = "** THIS NICKNAME IS ALREADY TAKEN **";
         }else if ((e + "").Contains("Host not found"))
         {
-            menuSkripta.errorstat.text = "NO INTERNET";
+            menuSkripta.errorstat.text = "** NO INTERNET CONNECTION **";
         }
         else
         {
-            menuSkripta.errorstat.text = "ERROR";
+            menuSkripta.errorstat.text = "** SOMETHING WENT WRONG **";
         }
         
     }  
