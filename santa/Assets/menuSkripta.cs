@@ -81,8 +81,8 @@ public class menuSkripta : MonoBehaviour {
                 //audio.enabled = false;
                 PlayerPrefs.SetInt("zvok", 1);
                 zvokTog.isOn = false;
-                //zvokTog2.isOn = false;
-                //zvokTog3.isOn = false;
+                zvokTog2.isOn = false;
+                zvokTog3.isOn = false;
 
             }
         }
@@ -298,9 +298,11 @@ public class menuSkripta : MonoBehaviour {
             AudioListener.volume = 0;
             PlayerPrefs.SetInt("zvok", 0);
             
+
         }
         else
         {
+            
             AudioListener.volume = 1;
             PlayerPrefs.SetInt("zvok",1);
         }
