@@ -30,7 +30,7 @@ public class menuSkripta : MonoBehaviour {
     public Text zadnjaStev;
     
 
-    public GameObject prviPlayGumb;
+    public GameObject[] prviPlayGumb;
     public GameObject leaderTabela;
     public GameObject signIN;
     public GameObject CanvasGamplay;
@@ -57,11 +57,16 @@ public class menuSkripta : MonoBehaviour {
     public GameObject[] napisi;
     public Toggle[] toogliButtoni;
 
+    public Text errorji;
+    public static Text errorstat;
+    public static bool userVpisan = false;
+
     List<GameObject> list;
    
     void Awake()
     {
-
+        
+        PlayerPrefs.DeleteAll();
         audioB = gameObject.GetComponent<AudioListener>();
         if (PlayerPrefs.HasKey("zvok"))
         {
@@ -98,7 +103,7 @@ public class menuSkripta : MonoBehaviour {
         zgorniCol.SetActive(true);
 
         hiseObjekti.SetActive(true);
-        
+        errorstat = errorji;
     }
 	
 	// Update is called once per frame
@@ -151,7 +156,7 @@ public class menuSkripta : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (leaderTabela.activeSelf)
+            if (leaderTabela.activeSelf || signIN.activeSelf)
             {
                 //leaderTabela.SetActive(false);
                 for(int i=0; i < toogliButtoni.Length; i++)
@@ -159,6 +164,11 @@ public class menuSkripta : MonoBehaviour {
                     toogliButtoni[i].isOn = false;
                 }
             }
+        }
+        if (userVpisan)
+        {
+            userVpisan = false;
+            leader();
         }
 
 
@@ -211,22 +221,38 @@ public class menuSkripta : MonoBehaviour {
 
     public void leader()
     {
+        errorstat.text = "";
         if(leaderTabela.activeSelf || signIN.activeSelf || NoInternet.activeSelf)
         {
             leaderTabela.SetActive(false);
-            signIN.SetActive(false);
+            
+                
             NoInternet.SetActive(false);
 
             foreach (GameObject g in list)
             {
                 g.SetActive(true);
             }
-            prviPlayGumb.SetActive(true);
+            for(int i=0; i < prviPlayGumb.Length; i++)
+            {
+                prviPlayGumb[i].SetActive(true);
+            }
             
+            if (signIN.activeSelf)
+            {
+                signIN.SetActive(false);
+                if (PlayerPrefs.HasKey("user"))
+                {
+                    leader();
+                }
+                
+            }
+
         }
         else if (PlayerPrefs.HasKey("user") )
         {
             tabelaBoard.SetActive(false);
+            signIN.SetActive(false);
             NoInternet.SetActive(true);
             leaderTabela.SetActive(true);
             leaderSkripta.getTopNRanks = true;
@@ -238,12 +264,19 @@ public class menuSkripta : MonoBehaviour {
                     napisi[i].SetActive(false);
                 }
             }
-            prviPlayGumb.SetActive(false);
+            
+            for (int i = 0; i < prviPlayGumb.Length; i++)
+            {
+                prviPlayGumb[i].SetActive(false);
+            }
         }
         else
         {
             signIN.SetActive(true);
-            prviPlayGumb.SetActive(false);
+            for (int i = 0; i < prviPlayGumb.Length; i++)
+            {
+                prviPlayGumb[i].SetActive(false);
+            }
         }
     }
 

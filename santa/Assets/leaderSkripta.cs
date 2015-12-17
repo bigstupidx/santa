@@ -83,8 +83,9 @@ public class leaderSkripta : MonoBehaviour
 			saveScore=true;
 			recivedUser=null;
             signIn.SetActive(false);
-            leaderTabela.SetActive(true);
+            //leaderTabela.SetActive(true);
             PlayerPrefs.SetString("user", userName);
+            menuSkripta.userVpisan = true;
 
 		}
 		if (recivedScore != null) {
@@ -121,8 +122,20 @@ public class UnityCallBackCreateUser : App42CallBack
 	}  
 	public void OnException(Exception e)  
 	{  
-		App42Log.Console("Exception : " + e);  
-	}  
+		App42Log.Console("Exception : " + e);
+        if ((e + "").Contains(@"""appErrorCode"":""2001"""))
+        {
+            menuSkripta.errorstat.text = "USERNAME TAKEN";
+        }else if ((e + "").Contains("Host not found"))
+        {
+            menuSkripta.errorstat.text = "NO INTERNET";
+        }
+        else
+        {
+            menuSkripta.errorstat.text = "ERROR";
+        }
+        
+    }  
 }  
 
 public class UnityCallBackSaveScore : App42CallBack  

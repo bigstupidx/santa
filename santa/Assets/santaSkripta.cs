@@ -91,7 +91,7 @@ public class santaSkripta : MonoBehaviour {
         if (odstevaj)
         {
             casIgre -= Time.deltaTime;
-            if(casIgre < 0)
+            if(casIgre < 0 && colStanje < 1)
             {
                 desno = true;
             }
