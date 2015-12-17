@@ -28,7 +28,7 @@ public class hiseGenerator : MonoBehaviour {
         
         for (int i=0; i < seznamHis.Length; i++)
         {
-            seznamHis[i] = Instantiate(Hise[Random.Range(0, Hise.Length)]) as GameObject;
+            seznamHis[i] = Instantiate(Hise[Random.Range(0, Hise.Length)], new Vector3(70000, 40000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
             seznamHis[i].transform.SetParent(transform,false);
             seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
 

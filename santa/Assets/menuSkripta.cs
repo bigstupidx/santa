@@ -32,6 +32,7 @@ public class menuSkripta : MonoBehaviour {
     public GameObject leaderTabela;
     public GameObject signIN;
     public GameObject CanvasGamplay;
+    public GameObject hiseObjekti;
     public GameObject CanvasPrviPlay;
     public GameObject CanvasAnimacija;
     public GameObject canvasStatic;
@@ -93,6 +94,9 @@ public class menuSkripta : MonoBehaviour {
         leaderSkripta.getUserRank = true;
         spodnjiCol.SetActive(true);
         zgorniCol.SetActive(true);
+
+        hiseObjekti.SetActive(true);
+        
     }
 	
 	// Update is called once per frame
@@ -133,10 +137,11 @@ public class menuSkripta : MonoBehaviour {
         image2.enabled = true;
         snezinke1.enabled = true;
         snezinke2.enabled = true;
+        playGumb.SetActive(false);
         CanvasAnimacija.SetActive(true);
         CanvasPrviPlay.SetActive(false);
         CanvasGamplay.SetActive(true);
-        playGumb.SetActive(false);
+        
         santa.ponastavi();
         hise.dodajPrvoHiso();
         santaSkripta.igranje = true;

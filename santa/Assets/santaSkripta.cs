@@ -54,11 +54,7 @@ public class santaSkripta : MonoBehaviour {
     {
         GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
         seznamDaril = new GameObject[30];
-        for (int i = 0; i < seznamDaril.Length; i++)
-        {
-            seznamDaril[i] = Instantiate(darila[Random.Range(0, darila.Length)]);
-        }
-        GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
+        
     }
 	void Start () {
         casIgre = timeIgre;
@@ -75,11 +71,22 @@ public class santaSkripta : MonoBehaviour {
         cilj = GetComponent<RectTransform>().localPosition.y;
 
         //hpText.text = "HP " + hp;
-        colStanje = 1;
+        colStanje = 0;
+
+        for (int i = 0; i < seznamDaril.Length; i++)
+        {
+            seznamDaril[i] = Instantiate(darila[Random.Range(0, darila.Length)], new Vector3(30000, 20000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
+        }
+        GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(gameObject.GetComponent<RectTransform>().localPosition.y < -500)
+        {
+            GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
+        }
 
         if (odstevaj)
         {
@@ -236,7 +243,7 @@ public class santaSkripta : MonoBehaviour {
             powerSkripta.skalar = 0;
             odstevaj = false;
         }
-        else if (other.CompareTag("zgorniCol") && colStanje == 1)
+        else if (other.CompareTag("zgorniCol") && colStanje == 0)
         {
             colStanje = 2;
             zmaga();
