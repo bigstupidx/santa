@@ -25,7 +25,9 @@ public class menuSkripta : MonoBehaviour {
 
     public Text[] imena;
     public Text[] scori;
+    public Text[] mesta;
     public Text rank;
+    public Text zadnjaStev;
     
 
     public GameObject prviPlayGumb;
@@ -112,6 +114,38 @@ public class menuSkripta : MonoBehaviour {
             {
                 scori[i].text = leaderSkripta.scoreR[i];
                 imena[i].text = leaderSkripta.imeR[i];
+
+                if(PlayerPrefs.HasKey("rank") && PlayerPrefs.GetInt("rank") == i + 1)
+                {
+                    scori[i].color = new Color(1, 108 / 256f, 99 / 256f, 1);
+                    imena[i].color = new Color(1, 108 / 256f, 99 / 256f, 1);
+                    mesta[i].color = new Color(1, 108 / 256f, 99 / 256f, 1);
+                }
+                else
+                {
+                    scori[i].color = new Color(1, 1, 1, 1);
+                    imena[i].color = new Color(1, 1, 1, 1);
+                    mesta[i].color = new Color(1, 1, 1, 1);
+                }
+            }
+
+            if(PlayerPrefs.HasKey("rank") && PlayerPrefs.GetInt("rank") > 9)
+            {
+                scori[scori.Length - 1].text = PlayerPrefs.GetInt("score")+"";
+                imena[scori.Length - 1].text = PlayerPrefs.GetString("user");
+                zadnjaStev.text = PlayerPrefs.GetInt("rank") + "";
+                scori[scori.Length - 1].color = new Color(1, 108 / 256f, 99 / 256f, 1);
+                imena[scori.Length - 1].color = new Color(1, 108 / 256f, 99 / 256f, 1);
+                mesta[scori.Length - 1].color = new Color(1, 1, 1, 1);
+
+            }
+            else
+            {
+                zadnjaStev.text = "10";
+                zadnjaStev.color = new Color(1,1, 1, 1);
+                scori[scori.Length - 1].color = new Color(1, 1, 1, 1);
+                imena[scori.Length - 1].color = new Color(1, 1, 1, 1);
+                mesta[scori.Length - 1].color = new Color(1, 1, 1, 1);
             }
 
         }
