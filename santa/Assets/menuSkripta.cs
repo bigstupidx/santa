@@ -62,11 +62,12 @@ public class menuSkripta : MonoBehaviour {
     public static bool userVpisan = false;
 
     List<GameObject> list;
+    bool prviStart = false;
    
     void Awake()
     {
         
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         audioB = gameObject.GetComponent<AudioListener>();
         if (PlayerPrefs.HasKey("zvok"))
         {
@@ -80,14 +81,14 @@ public class menuSkripta : MonoBehaviour {
                 //audio.enabled = false;
                 PlayerPrefs.SetInt("zvok", 1);
                 zvokTog.isOn = false;
-                zvokTog2.isOn = false;
-                zvokTog3.isOn = false;
+                //zvokTog2.isOn = false;
+                //zvokTog3.isOn = false;
 
             }
         }
         else
         {
-            PlayerPrefs.SetInt("zvok", 0);
+            PlayerPrefs.SetInt("zvok", 1);
         }
     }
     
@@ -102,12 +103,14 @@ public class menuSkripta : MonoBehaviour {
         spodnjiCol.SetActive(true);
         zgorniCol.SetActive(true);
 
-        hiseObjekti.SetActive(true);
+        
         errorstat = errorji;
+        //hiseObjekti.SetActive(true);
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
         if (posodobiLeader)
         {
             NoInternet.SetActive(false);
@@ -171,30 +174,38 @@ public class menuSkripta : MonoBehaviour {
             leader();
         }
 
+        
+
 
     }
 
     public void play()
     {
-        canvasStatic.SetActive(false);
-        image1.enabled = true;
-        image2.enabled = true;
-        snezinke1.enabled = true;
-        snezinke2.enabled = true;
-        playGumb.SetActive(false);
-        CanvasAnimacija.SetActive(true);
-        CanvasPrviPlay.SetActive(false);
-        CanvasGamplay.SetActive(true);
+
+
+      
         
-        santa.ponastavi();
-        hise.dodajPrvoHiso();
-        santaSkripta.igranje = true;
-        canvasScore.SetActive(true);
-        cas = zacCas;
-        napisi[3].SetActive(true);
-        santaSkripta.odstevaj = true;
-        santaSkripta.prihod = true;
-        //menu.SetActive(false);
+            canvasStatic.SetActive(false);
+            image1.enabled = true;
+            image2.enabled = true;
+            snezinke1.enabled = true;
+            snezinke2.enabled = true;
+            playGumb.SetActive(false);
+            CanvasAnimacija.SetActive(true);
+            CanvasPrviPlay.SetActive(false);
+            CanvasGamplay.SetActive(true);
+
+            santa.ponastavi();
+            hise.dodajPrvoHiso();
+            santaSkripta.igranje = true;
+            canvasScore.SetActive(true);
+            cas = zacCas;
+            napisi[3].SetActive(true);
+            santaSkripta.odstevaj = true;
+            santaSkripta.prihod = true;
+            //menu.SetActive(false);
+        
+
     }
 
     public void loose()

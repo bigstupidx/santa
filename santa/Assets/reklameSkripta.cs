@@ -9,6 +9,8 @@ public class reklameSkripta : MonoBehaviour {
 
     public static bool showReklamo = false;
     public static bool naloziReklamo = false;
+    public static bool showReklamoZak = false;
+    float casZak = 1;
 
 	void Start () {
         UnityPluginForWindowsPhone.Class1.konstruktor("ca-app-pub-6604259944075538/1324230402", true);
@@ -24,6 +26,17 @@ public class reklameSkripta : MonoBehaviour {
             showReklamo = false;
             UnityPluginForWindowsPhone.Class1.showCelozaslonsko();
             Debug.Log("show celo");
+        }
+
+        if (showReklamoZak)
+        {
+            casZak -= Time.deltaTime;
+            if(casZak < 0)
+            {
+                showReklamoZak = false;
+                showReklamo = true;
+                casZak = 1;
+            }
         }
 
         if (naloziReklamo)

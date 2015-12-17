@@ -12,8 +12,8 @@ public class dariloSkripta : MonoBehaviour {
         gameObject.SetActive(false);
         mapGenerator = GameObject.Find("Hise");
         santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
-        transform.parent = mapGenerator.transform.parent;
-        // transform.SetParent(mapGenerator.transform, false);
+        //transform.parent = mapGenerator.transform.parent;
+        transform.SetParent(mapGenerator.transform.parent, false);
         GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         gameObject.SetActive(false);
     }

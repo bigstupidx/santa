@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class hiseGenerator : MonoBehaviour {
 
     // Use this for initialization
     public GameObject[] Hise;
-    GameObject[] seznamHis;
+    public GameObject[] seznamHis;
     int stevec = 0;
     Vector3 zacetnaPos;
     public float speed = 0;
@@ -22,23 +23,27 @@ public class hiseGenerator : MonoBehaviour {
 
 	void Start () {
         parentC = transform.parent.GetComponent<RectTransform>();
-        
-        
-        seznamHis = new GameObject[100];
+        stevec = Random.Range(0, 1000);
+
+        //seznamHis = new GameObject[100];
         
         for (int i=0; i < seznamHis.Length; i++)
         {
-            seznamHis[i] = Instantiate(Hise[Random.Range(0, Hise.Length)], new Vector3(70000, 40000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
-            seznamHis[i].transform.SetParent(transform,false);
-            seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
+            //seznamHis[i] = Instantiate(Hise[Random.Range(0, Hise.Length)], new Vector3(70000, 40000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
+            //seznamHis[i].transform.SetParent(transform, true);
+            //seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
+            //seznamHis[i] = transform.GetChild(i).gameObject;
 
         }
         zacetnaPos = transform.position;
         
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    
+
+
+    // Update is called once per frame
+    void Update () {
         transform.position += transform.right * -speed * speedP* Time.deltaTime;
         if (dodajHis)
         {
@@ -61,7 +66,7 @@ public class hiseGenerator : MonoBehaviour {
             zac.GetComponent<hisaSkripta>().IdHisa = iDzadnja;
             stevec++;
             
-            Debug.Log(posTime + "time");
+            
             //zac.GetComponent<Collider2D>().enabled = true;
             trZadnja = zac.transform;
             posTime = Time.time;
@@ -89,8 +94,8 @@ public class hiseGenerator : MonoBehaviour {
         //zac.GetComponent<Collider2D>().enabled = true;
         trZadnja = zac.transform;
         posTime = Time.time;
-        
-        
+        Debug.Log(posTime + "time");
+
         iDzadnja = idHis;
         stevec++;
         
