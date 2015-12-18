@@ -8,7 +8,7 @@ public class santaSkripta : MonoBehaviour {
     public AudioClip spustVDimnik;
     public AudioClip spustZgresitev;
     public GameObject[] darila;
-    GameObject[] seznamDaril;
+    public GameObject[] seznamDaril;
     int stevec = 0;
 
     bool staroStanje = false;
@@ -50,10 +50,12 @@ public class santaSkripta : MonoBehaviour {
     float cilj = 0;
     int colStanje = -1;
 
+    int stDarilKlik = 0;
+
     void Awake()
     {
         GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
-        seznamDaril = new GameObject[30];
+        
         
     }
 	void Start () {
@@ -72,16 +74,33 @@ public class santaSkripta : MonoBehaviour {
 
         //hpText.text = "HP " + hp;
         colStanje = 0;
+        //seznamDaril = new GameObject[darila.Length * 2];
+        //for (int i = 0; i < darila.Length; i++)
+        //{
+        //    for(int j = 0; j < 2; j++)
+        //    {
+        //        seznamDaril[i*2 + j] = Instantiate(darila[i], new Vector3(30000, 20000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
+        //    }
 
-        for (int i = 0; i < seznamDaril.Length; i++)
-        {
-            seznamDaril[i] = Instantiate(darila[Random.Range(0, darila.Length)], new Vector3(30000, 20000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
-        }
+        //}
+        seznamDaril = shuffle(seznamDaril);
         GetComponent<RectTransform>().localPosition = new Vector3(212 - 1000, 13, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public static GameObject[] shuffle(GameObject[] tab)
+    {
+        for (int i = 0; i < tab.Length; i++)
+        {
+            int ink = Random.Range(0, tab.Length);
+            GameObject pom = tab[i];
+            tab[i] = tab[ink];
+            tab[ink] = pom;
+        }
+        return tab;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if(gameObject.GetComponent<RectTransform>().localPosition.y < -500)
         {
@@ -98,7 +117,7 @@ public class santaSkripta : MonoBehaviour {
             
         }
         novoStanje = Input.GetMouseButtonDown(0);
-        if (novoStanje && !staroStanje && igranje && casDarila <= 0)
+        if (novoStanje && !staroStanje && igranje && (casDarila <= 0 || stDarilKlik < 2))
         {
             seznamDaril[stevec].SetActive(true);
             seznamDaril[stevec].GetComponent<RectTransform>().position = gameObject.GetComponent<RectTransform>().position;
@@ -108,8 +127,13 @@ public class santaSkripta : MonoBehaviour {
             seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 3.2f), ForceMode2D.Impulse);
             stevec++;
             stevec %= seznamDaril.Length;
-            casDarila = 0.25f;
-        }else if(casDarila > 0)
+            if(casDarila <= 0)
+            {
+                casDarila = 0.35f;
+                stDarilKlik = 0;
+            }
+            stDarilKlik++;
+        }else if(casDarila > 0 || stDarilKlik > 1)
         {
             casDarila -= Time.deltaTime;
         }

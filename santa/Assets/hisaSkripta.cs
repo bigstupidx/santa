@@ -11,6 +11,8 @@ public class hisaSkripta : MonoBehaviour {
     RectTransform rectCanvas;
     RectTransform rectMe;
     Animator animator;
+
+    public int hp;
     void Awake()
     {
         rectMe = GetComponent<RectTransform>();
@@ -47,6 +49,19 @@ public class hisaSkripta : MonoBehaviour {
         
     }
 
+    public void zadektek()
+    {
+        if(hp <= 1)
+        {
+            sproziAnimator();
+
+        }
+        else
+        {
+            hp--;
+
+        }
+    }
     public void sproziAnimator()
     {
         if(animator != null)

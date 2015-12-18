@@ -18,8 +18,7 @@ public class menuSkripta : MonoBehaviour {
 
     AudioListener audioB;
     public Toggle zvokTog;
-    public Toggle zvokTog2;
-    public Toggle zvokTog3;
+    
 
     public static bool posodobiLeader = false;
 
@@ -28,8 +27,8 @@ public class menuSkripta : MonoBehaviour {
     public Text[] mesta;
     public Text rank;
     public Text zadnjaStev;
-    
 
+    public GameObject canvasGumbSound;
     public GameObject[] prviPlayGumb;
     public GameObject leaderTabela;
     public GameObject signIN;
@@ -53,6 +52,9 @@ public class menuSkripta : MonoBehaviour {
 
     public Animator snezinke1;
     public Animator snezinke2;
+
+    public Animator image3;
+    public Animator image4;
 
     public GameObject[] napisi;
     public Toggle[] toogliButtoni;
@@ -81,8 +83,6 @@ public class menuSkripta : MonoBehaviour {
                 //audio.enabled = false;
                 PlayerPrefs.SetInt("zvok", 1);
                 zvokTog.isOn = false;
-                zvokTog2.isOn = false;
-                zvokTog3.isOn = false;
 
             }
         }
@@ -183,11 +183,13 @@ public class menuSkripta : MonoBehaviour {
     {
 
 
-      
-        
+
+        canvasGumbSound.SetActive(false);
             canvasStatic.SetActive(false);
             image1.enabled = true;
             image2.enabled = true;
+        image4.enabled = true;
+        image3.enabled = true;
             snezinke1.enabled = true;
             snezinke2.enabled = true;
             playGumb.SetActive(false);
@@ -210,6 +212,7 @@ public class menuSkripta : MonoBehaviour {
 
     public void loose()
     {
+        canvasGumbSound.SetActive(true);
         napisi[3].SetActive(false);
         restartVis.SetActive(true);
     }
@@ -218,6 +221,7 @@ public class menuSkripta : MonoBehaviour {
     {
         restartCas.SetActive(true);
         napisi[3].SetActive(false);
+        canvasGumbSound.SetActive(true);
     }
 
     public void RATE()
@@ -311,11 +315,17 @@ public class menuSkripta : MonoBehaviour {
 
     public void Restart()
     {
+        canvasGumbSound.SetActive(false);
         image1.enabled = false;
         image2.enabled = false;
+        image4.enabled = false;
+        image3.enabled = false;
 
         image1.enabled = true;
         image2.enabled = true;
+
+        image4.enabled = true;
+        image3.enabled = true;
         snezinke1.enabled = false;
         snezinke1.enabled = true;
         snezinke2.enabled = false;

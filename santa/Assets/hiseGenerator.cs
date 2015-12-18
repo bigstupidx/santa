@@ -23,21 +23,38 @@ public class hiseGenerator : MonoBehaviour {
 
 	void Start () {
         parentC = transform.parent.GetComponent<RectTransform>();
-        stevec = Random.Range(0, 1000);
-
-        //seznamHis = new GameObject[100];
+        stevec = 0;//Random.Range(0, 1000);
         
-        for (int i=0; i < seznamHis.Length; i++)
-        {
-            //seznamHis[i] = Instantiate(Hise[Random.Range(0, Hise.Length)], new Vector3(70000, 40000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
-            //seznamHis[i].transform.SetParent(transform, true);
-            //seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
-            //seznamHis[i] = transform.GetChild(i).gameObject;
+        //seznamHis = new GameObject[Hise.Length*4];
+        
+        //for (int i=0; i < Hise.Length; i++)
+        //{
+        //    for(int j=0; j < 4; j++)
+        //    {
+        //        seznamHis[i*4 + j] = Instantiate(Hise[i], new Vector3(70000, 40000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
+        //        seznamHis[i*4+j].transform.SetParent(transform, false);
+        //    }
+        //    //
+        //    //seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
+        //    //seznamHis[i] = transform.GetChild(i).gameObject;
 
-        }
+        //}
+        seznamHis = shuffle(seznamHis);
         zacetnaPos = transform.position;
         
 	}
+
+    public static GameObject[] shuffle(GameObject[] tab)
+    {
+        for(int i=0; i < tab.Length; i++)
+        {
+            int ink = Random.Range(0,tab.Length);
+            GameObject pom = tab[i];
+            tab[i] = tab[ink];
+            tab[ink] = pom;
+        }
+        return tab;
+    }
 
     
 

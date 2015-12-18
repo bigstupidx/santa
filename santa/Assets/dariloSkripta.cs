@@ -9,13 +9,13 @@ public class dariloSkripta : MonoBehaviour {
     public float speed = 5;
     void Awake()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         mapGenerator = GameObject.Find("Hise");
-        santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
+        //santa = GameObject.Find("SANTA").GetComponent<santaSkripta>();
         //transform.parent = mapGenerator.transform.parent;
-        transform.SetParent(mapGenerator.transform.parent, false);
-        GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        gameObject.SetActive(false);
+        //transform.SetParent(mapGenerator.transform.parent, false);
+        //GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        //gameObject.SetActive(false);
     }
 	void Start () {
         
@@ -45,12 +45,18 @@ public class dariloSkripta : MonoBehaviour {
     {
         if(other.tag == "dimnik")
         {
-            other.transform.parent.GetComponent<hisaSkripta>().sproziAnimator();
-            santa.zadetek();
-            gameObject.SetActive(false);
+            hisaSkripta zac = other.transform.parent.GetComponent<hisaSkripta>();
+            if(zac.hp <= 1)
+            {
+                santa.zadetek();
+                gameObject.SetActive(false);
+            }
+            zac.zadektek();
+            
         }else if(other.tag == "spodniCol")
         {
             santa.zgresitev();
+            gameObject.SetActive(false);
         }
     }
 }
