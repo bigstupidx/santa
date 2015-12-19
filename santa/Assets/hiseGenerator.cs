@@ -20,27 +20,41 @@ public class hiseGenerator : MonoBehaviour {
     Transform trZadnja;
     int iDzadnja = 0;
    
-
-	void Start () {
+    void Awake()
+    {
         parentC = transform.parent.GetComponent<RectTransform>();
         stevec = 0;//Random.Range(0, 1000);
-        
-        //seznamHis = new GameObject[Hise.Length*4];
-        
-        //for (int i=0; i < Hise.Length; i++)
+
+        //seznamHis = new GameObject[Hise.Length * 4];
+
+        //for (int i = 0; i < Hise.Length; i++)
         //{
-        //    for(int j=0; j < 4; j++)
+        //    for (int j = 0; j < 4; j++)
         //    {
-        //        seznamHis[i*4 + j] = Instantiate(Hise[i], new Vector3(70000, 40000 + Random.value * 2000), Quaternion.Euler(0, 0, 0)) as GameObject;
-        //        seznamHis[i*4+j].transform.SetParent(transform, false);
+        //        seznamHis[i * 4 + j] = Instantiate(Hise[i]) as GameObject;
+        //        seznamHis[i * 4 + j].transform.SetParent(transform, false);
         //    }
         //    //
         //    //seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
         //    //seznamHis[i] = transform.GetChild(i).gameObject;
 
         //}
+
+        for (int i = 0; i < Hise.Length; i++)
+        {
+            //seznamHis[i * 4].SetActive(true);
+            //seznamHis[i * 4].GetComponent<hisaSkripta>().hp = 2;
+            //seznamHis[i * 4].GetComponent<hisaSkripta>().stariHp = 2;
+            //seznamHis[i * 4].GetComponent<hisaSkripta>().kapa.SetActive(true);
+            //seznamHis[i * 4].SetActive(false);
+
+        }
         seznamHis = shuffle(seznamHis);
         zacetnaPos = transform.position;
+    }
+
+	void Start () {
+        
         
 	}
 
@@ -81,6 +95,7 @@ public class hiseGenerator : MonoBehaviour {
             zac.GetComponent<RectTransform>().localPosition = pos;
             zac.SetActive(true);
             zac.GetComponent<hisaSkripta>().IdHisa = iDzadnja;
+            zac.GetComponent<hisaSkripta>().ponastavi();
             stevec++;
             
             
@@ -108,6 +123,7 @@ public class hiseGenerator : MonoBehaviour {
         rt.localPosition = pos;
             
         zac.GetComponent<hisaSkripta>().IdHisa = idHis;
+        zac.GetComponent<hisaSkripta>().ponastavi();
         //zac.GetComponent<Collider2D>().enabled = true;
         trZadnja = zac.transform;
         posTime = Time.time;

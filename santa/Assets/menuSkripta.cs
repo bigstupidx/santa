@@ -45,6 +45,7 @@ public class menuSkripta : MonoBehaviour {
 
     public GameObject spodnjiCol;
     public GameObject zgorniCol;
+    public GameObject santaG;
     
 
     public Animator image1;
@@ -106,11 +107,22 @@ public class menuSkripta : MonoBehaviour {
         
         errorstat = errorji;
         //hiseObjekti.SetActive(true);
+        restartCas.SetActive(false);
+        restartVis.SetActive(false);
+        CanvasAnimacija.SetActive(false);
+        leaderTabela.SetActive(false);
+        signIN.SetActive(false);
+        canvasScore.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
         
+        //if(CanvasPrviPlay.activeSelf && ( restartCas.activeSelf || restartVis.activeSelf))
+        //{
+        //    Restart();
+        //}
+
         if (posodobiLeader)
         {
             NoInternet.SetActive(false);
@@ -183,7 +195,7 @@ public class menuSkripta : MonoBehaviour {
     {
 
 
-
+        //santaG.SetActive(true);
         canvasGumbSound.SetActive(false);
             canvasStatic.SetActive(false);
             image1.enabled = true;
@@ -215,6 +227,7 @@ public class menuSkripta : MonoBehaviour {
         canvasGumbSound.SetActive(true);
         napisi[3].SetActive(false);
         restartVis.SetActive(true);
+        Debug.Log("loose ");
     }
 
     public void looseDesno()
@@ -222,6 +235,8 @@ public class menuSkripta : MonoBehaviour {
         restartCas.SetActive(true);
         napisi[3].SetActive(false);
         canvasGumbSound.SetActive(true);
+
+        Debug.Log("loose desno");
     }
 
     public void RATE()
@@ -353,5 +368,6 @@ public class menuSkripta : MonoBehaviour {
         napisi[3].SetActive(false);
         CanvasPrviPlay.SetActive(false);
         restartCas.SetActive(true);
+        Debug.Log("konec cas ");
     }
 }

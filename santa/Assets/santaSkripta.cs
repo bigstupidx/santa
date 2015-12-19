@@ -41,14 +41,14 @@ public class santaSkripta : MonoBehaviour {
     float speedRight = 0;
     float casRight = 0;
 
-    float casIgre = 0;
+    float casIgre = 60;
     public static bool odstevaj = false;
 
     public static bool prihod = false;
     float speedPrihod = 200;
 
     float cilj = 0;
-    int colStanje = -1;
+    public int colStanje = -1;
 
     int stDarilKlik = 0;
 
@@ -73,7 +73,7 @@ public class santaSkripta : MonoBehaviour {
         cilj = GetComponent<RectTransform>().localPosition.y;
 
         //hpText.text = "HP " + hp;
-        colStanje = 0;
+        colStanje = -1;
         //seznamDaril = new GameObject[darila.Length * 2];
         //for (int i = 0; i < darila.Length; i++)
         //{
@@ -232,26 +232,7 @@ public class santaSkripta : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("power"))
-        {
-            string status = other.gameObject.GetComponent<subPower>().status;
-            other.gameObject.SetActive(false);
-            if(status == "hp")
-            {
-                hp++;
-                //hpText.text = "HP " + hp;
-            }else if(status == "scit")
-            {
-                scit = 5;
-            }else if(status == "dvojne")
-            {
-                dvojne = 5;
-            }else if(status == "hitrost")
-            {
-                hitrost = 3;
-            }
-            other.GetComponent<subPower>().power.nastaviSkalar();
-        }else if (other.CompareTag("desniCol") && colStanje == 0)
+        if (other.CompareTag("desniCol") && colStanje == 0)
         {
             hiseGenerator.speedP = 3;
             colStanje = 1;
@@ -263,9 +244,7 @@ public class santaSkripta : MonoBehaviour {
                 if (seznamDaril[i].activeSelf)
                     seznamDaril[i].SetActive(false);
             }
-            powerSkripta.ponastavi = 3;
             menuSkript.looseDesno();
-            powerSkripta.skalar = 0;
             odstevaj = false;
         }
         else if (other.CompareTag("zgorniCol") && colStanje == 0)

@@ -98,7 +98,7 @@ public class leaderSkripta : MonoBehaviour
     public void createUserfun()
     {
         createUser = true;
-        if(input.text.Length > 3 && input.text.Length < 15)
+        if(input.text.Length > 0 && input.text.Length < 15)
         {
             userName = input.text;
         }

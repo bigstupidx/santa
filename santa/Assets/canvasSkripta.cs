@@ -9,9 +9,9 @@ public class canvasSkripta : MonoBehaviour {
         gameObject.GetComponent<BoxCollider2D>().size = GetComponent<RectTransform>().sizeDelta;
     }
 	void Start () {
-        
-        
 
+
+        gameObject.GetComponent<BoxCollider2D>().size = GetComponent<RectTransform>().sizeDelta;
     }
 	
 

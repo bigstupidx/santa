@@ -49,8 +49,8 @@ public class dariloSkripta : MonoBehaviour {
             if(zac.hp <= 1)
             {
                 santa.zadetek();
-                gameObject.SetActive(false);
             }
+            gameObject.SetActive(false);
             zac.zadektek();
             
         }else if(other.tag == "spodniCol")
