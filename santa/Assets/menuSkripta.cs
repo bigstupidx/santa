@@ -28,6 +28,7 @@ public class menuSkripta : MonoBehaviour {
     public Text rank;
     public Text zadnjaStev;
 
+    public GameObject canvasSnezinke;
     public GameObject canvasGumbSound;
     public GameObject[] prviPlayGumb;
     public GameObject leaderTabela;
@@ -113,6 +114,7 @@ public class menuSkripta : MonoBehaviour {
         leaderTabela.SetActive(false);
         signIN.SetActive(false);
         canvasScore.SetActive(false);
+        canvasSnezinke.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -196,6 +198,7 @@ public class menuSkripta : MonoBehaviour {
 
 
         //santaG.SetActive(true);
+        canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);
             canvasStatic.SetActive(false);
             image1.enabled = true;
@@ -330,6 +333,8 @@ public class menuSkripta : MonoBehaviour {
 
     public void Restart()
     {
+        canvasSnezinke.SetActive(false);
+        canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);
         image1.enabled = false;
         image2.enabled = false;

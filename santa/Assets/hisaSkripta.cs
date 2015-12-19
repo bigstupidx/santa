@@ -88,6 +88,7 @@ public class hisaSkripta : MonoBehaviour {
         if(hp <= 1)
         {
             sproziAnimator();
+            Debug.Log("sprozi animator");
 
         }
         else
