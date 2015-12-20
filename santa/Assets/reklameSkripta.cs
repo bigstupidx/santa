@@ -30,12 +30,9 @@ public class reklameSkripta : MonoBehaviour {
         // Initialize an InterstitialAd.
         interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
-        //request = new AdRequest.Builder().Build();
+        request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
-        AdRequest request = new AdRequest.Builder()
-    .AddTestDevice(AdRequest.TestDeviceSimulator)       // Simulator.
-    .AddTestDevice(SystemInfo.deviceUniqueIdentifier)  // My test device.
-    .Build();
+        
 
         interstitial.LoadAd(request);
 #elif UNITY_IPHONE
