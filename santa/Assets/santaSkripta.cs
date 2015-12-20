@@ -296,6 +296,7 @@ public class santaSkripta : MonoBehaviour {
         casIgre = timeIgre;
         odstevaj = true;
 
+        vVisave = false;
     }
 
     public void zmaga()

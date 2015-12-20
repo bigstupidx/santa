@@ -28,6 +28,8 @@ public class menuSkripta : MonoBehaviour {
     public Text rank;
     public Text zadnjaStev;
 
+    public GameObject canvasSmrekeDan;
+    public GameObject canvasSmrekeNoc;
     public GameObject canvasSnezinke;
     public GameObject canvasGumbSound;
     public GameObject[] prviPlayGumb;
@@ -115,6 +117,7 @@ public class menuSkripta : MonoBehaviour {
         signIN.SetActive(false);
         canvasScore.SetActive(false);
         canvasSnezinke.SetActive(false);
+        canvasSmrekeDan.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -196,7 +199,7 @@ public class menuSkripta : MonoBehaviour {
     public void play()
     {
 
-
+        canvasSmrekeDan.SetActive(true);
         //santaG.SetActive(true);
         canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);
@@ -244,7 +247,14 @@ public class menuSkripta : MonoBehaviour {
 
     public void RATE()
     {
-        UnityPluginForWindowsPhone.Class1.prizgiRate();
+#if UNITY_ANDROID
+
+        Application.OpenURL("market://details?id=com.mordenkul.senta"); //Replace 'com.example.an
+#else
+        mojspace.Class1.prizgiRate();
+
+#endif
+
     }
 
     public void FB()
@@ -333,6 +343,10 @@ public class menuSkripta : MonoBehaviour {
 
     public void Restart()
     {
+        canvasSmrekeNoc.SetActive(false);
+        canvasSmrekeNoc.SetActive(true);
+        canvasSmrekeDan.SetActive(false);
+        canvasSmrekeDan.SetActive(true);
         canvasSnezinke.SetActive(false);
         canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);

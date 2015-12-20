@@ -132,9 +132,11 @@ public class UnityCallBackCreateUser : App42CallBack
         }
         else
         {
-            menuSkripta.errorstat.text = "** SOMETHING WENT WRONG **";
+            menuSkripta.errorstat.text = ""+e;
+
+            // menuSkripta.errorstat.text = "** SOMETHING WENT WRONG **";
         }
-        
+
     }  
 }  
 
