@@ -116,8 +116,8 @@ public class menuSkripta : MonoBehaviour {
         leaderTabela.SetActive(false);
         signIN.SetActive(false);
         canvasScore.SetActive(false);
-        canvasSnezinke.SetActive(false);
-        canvasSmrekeDan.SetActive(false);
+        //canvasSnezinke.SetActive(false);
+        //canvasSmrekeDan.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -199,9 +199,9 @@ public class menuSkripta : MonoBehaviour {
     public void play()
     {
 
-        canvasSmrekeDan.SetActive(true);
+        //canvasSmrekeDan.SetActive(true);
         //santaG.SetActive(true);
-        canvasSnezinke.SetActive(true);
+        //canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);
             canvasStatic.SetActive(false);
             image1.enabled = true;
@@ -343,12 +343,12 @@ public class menuSkripta : MonoBehaviour {
 
     public void Restart()
     {
-        canvasSmrekeNoc.SetActive(false);
-        canvasSmrekeNoc.SetActive(true);
-        canvasSmrekeDan.SetActive(false);
-        canvasSmrekeDan.SetActive(true);
-        canvasSnezinke.SetActive(false);
-        canvasSnezinke.SetActive(true);
+        //canvasSmrekeNoc.SetActive(false);
+        //canvasSmrekeNoc.SetActive(true);
+        //canvasSmrekeDan.SetActive(false);
+        //canvasSmrekeDan.SetActive(true);
+        //canvasSnezinke.SetActive(false);
+        //canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);
         image1.gameObject.SetActive(false);
         image2.gameObject.SetActive(false);
@@ -359,11 +359,12 @@ public class menuSkripta : MonoBehaviour {
         image2.gameObject.SetActive(true);
         image3.gameObject.SetActive(true);
         image4.gameObject.SetActive(true);
+
+        snezinke1.gameObject.SetActive(false);
+        snezinke2.gameObject.SetActive(false);
+        snezinke1.gameObject.SetActive(true);
+        snezinke2.gameObject.SetActive(true);
         
-        snezinke1.enabled = false;
-        snezinke1.enabled = true;
-        snezinke2.enabled = false;
-        snezinke2.enabled = true;
         CanvasAnimacija.SetActive(false);
         CanvasAnimacija.SetActive(true);
         canvasScore.SetActive(false);

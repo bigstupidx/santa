@@ -79,7 +79,9 @@ public class hisaSkripta : MonoBehaviour {
         if(hp > 1)
         {
             kapa.SetActive(true);
+            
         }
+        animator.SetActive(false);
     }
 
     public void zadektek()
