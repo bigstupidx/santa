@@ -74,8 +74,10 @@ public class hiseGenerator : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
-        transform.position += transform.right * -speed * speedP* Time.deltaTime;
+    void Update ()
+    {
+        gameObject.GetComponent<RectTransform>().localPosition += transform.right * -speed * speedP * Time.deltaTime;
+        
         if (dodajHis)
         {
             

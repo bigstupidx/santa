@@ -184,6 +184,11 @@ public class menuSkripta : MonoBehaviour {
                     toogliButtoni[i].isOn = false;
                 }
             }
+            else
+            {
+                Application.Quit();
+            }
+            
         }
         if (userVpisan)
         {
