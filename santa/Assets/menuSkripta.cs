@@ -158,15 +158,15 @@ public class menuSkripta : MonoBehaviour {
             {
                 scori[scori.Length - 1].text = PlayerPrefs.GetInt("score")+"";
                 imena[scori.Length - 1].text = PlayerPrefs.GetString("user");
-                zadnjaStev.text = PlayerPrefs.GetInt("rank") + "";
+                zadnjaStev.text = PlayerPrefs.GetInt("rank") + ".";
                 scori[scori.Length - 1].color = new Color(1, 108 / 256f, 99 / 256f, 1);
                 imena[scori.Length - 1].color = new Color(1, 108 / 256f, 99 / 256f, 1);
-                mesta[scori.Length - 1].color = new Color(1, 1, 1, 1);
+                mesta[scori.Length - 1].color = new Color(1, 108 / 256f, 99 / 256f, 1);
 
             }
             else
             {
-                zadnjaStev.text = "10";
+                zadnjaStev.text = "10.";
                 zadnjaStev.color = new Color(1,1, 1, 1);
                 scori[scori.Length - 1].color = new Color(1, 1, 1, 1);
                 imena[scori.Length - 1].color = new Color(1, 1, 1, 1);
@@ -276,7 +276,8 @@ public class menuSkripta : MonoBehaviour {
             {
                 g.SetActive(true);
             }
-            for(int i=0; i < prviPlayGumb.Length; i++)
+            
+            for (int i=0; i < prviPlayGumb.Length; i++)
             {
                 prviPlayGumb[i].SetActive(true);
             }
@@ -319,6 +320,14 @@ public class menuSkripta : MonoBehaviour {
             for (int i = 0; i < prviPlayGumb.Length; i++)
             {
                 prviPlayGumb[i].SetActive(false);
+            }
+            for (int i = 0; i < napisi.Length; i++)
+            {
+                if (napisi[i].activeSelf)
+                {
+                    list.Add(napisi[i]);
+                    napisi[i].SetActive(false);
+                }
             }
         }
     }
