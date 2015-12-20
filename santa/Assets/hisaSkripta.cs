@@ -10,7 +10,7 @@ public class hisaSkripta : MonoBehaviour {
     public bool vCol = false;
     RectTransform rectCanvas;
     RectTransform rectMe;
-    Animator animator;
+    GameObject animator;
 
     public GameObject kapa;
     public AudioClip kapaZvok;
@@ -23,7 +23,7 @@ public class hisaSkripta : MonoBehaviour {
         rectCanvas = GameObject.Find("Canvas GAMEPLAY").GetComponent<RectTransform>();
         mapGenerator = GameObject.Find("Hise").GetComponent<hiseGenerator>();
         //gameObject.SetActive(false);
-        animator = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Animator>();
+        animator = transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
         kapa = transform.GetChild(1).gameObject;
         kapa.SetActive(false);
     }
@@ -106,8 +106,9 @@ public class hisaSkripta : MonoBehaviour {
     {
         if(animator != null)
         {
-            animator.enabled = false;
-            animator.enabled = true;
+            animator.SetActive(false);
+            animator.SetActive(true);
+            
         }
         
     }

@@ -350,16 +350,16 @@ public class menuSkripta : MonoBehaviour {
         canvasSnezinke.SetActive(false);
         canvasSnezinke.SetActive(true);
         canvasGumbSound.SetActive(false);
-        image1.enabled = false;
-        image2.enabled = false;
-        image4.enabled = false;
-        image3.enabled = false;
+        image1.gameObject.SetActive(false);
+        image2.gameObject.SetActive(false);
+        image3.gameObject.SetActive(false);
+        image4.gameObject.SetActive(false);
 
-        image1.enabled = true;
-        image2.enabled = true;
-
-        image4.enabled = true;
-        image3.enabled = true;
+        image1.gameObject.SetActive(true);
+        image2.gameObject.SetActive(true);
+        image3.gameObject.SetActive(true);
+        image4.gameObject.SetActive(true);
+        
         snezinke1.enabled = false;
         snezinke1.enabled = true;
         snezinke2.enabled = false;
