@@ -249,9 +249,9 @@ public class menuSkripta : MonoBehaviour {
     {
 #if UNITY_ANDROID
 
-        Application.OpenURL("market://details?id=com.mordenkul.senta"); //Replace 'com.example.an
+        Application.OpenURL("market://details?id=com.morden.senta"); //Replace 'com.example.an
 #else
-        mojspace.Class1.prizgiRate();
+        //mojspace.Class1.prizgiRate();
 
 #endif
 
