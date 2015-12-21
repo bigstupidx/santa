@@ -27,10 +27,10 @@ public class dariloSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //transform.localPosition += transform.right * -speed * Time.deltaTime;
-        GetComponent<RectTransform>().localPosition += transform.right * speed2 * Time.deltaTime;
-        hitrost = hitrost + Gforce * Time.deltaTime;
-        GetComponent<RectTransform>().localPosition += transform.up * -hitrost;
+        transform.localPosition += transform.right * -speed * Time.deltaTime;
+        //GetComponent<RectTransform>().localPosition += transform.right * speed2 * Time.deltaTime;
+        //hitrost = hitrost + Gforce * Time.deltaTime;
+        //GetComponent<RectTransform>().localPosition += transform.up * -hitrost;
 
 
     }
