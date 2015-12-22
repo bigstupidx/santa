@@ -304,7 +304,7 @@ public class santaSkripta : MonoBehaviour {
     {
         if(Random.value < 0.20f && colStanje != -1)
             reklameSkripta.showReklamoZak = true;
-        if(PlayerPrefs.GetInt("score") <= stZadetkov && PlayerPrefs.HasKey("user"))
+        if(PlayerPrefs.GetInt("score") <= stZadetkov)
         {
             PlayerPrefs.SetInt("score", stZadetkov);
 

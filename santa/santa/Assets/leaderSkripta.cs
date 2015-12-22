@@ -81,10 +81,11 @@ public class leaderSkripta : MonoBehaviour
 
 		if (recivedUser != null) {
 			saveScore=true;
-			recivedUser=null;
+            PlayerPrefs.SetString("user", userName);
+            recivedUser =null;
             signIn.SetActive(false);
             //leaderTabela.SetActive(true);
-            PlayerPrefs.SetString("user", userName);
+            
             menuSkripta.userVpisan = true;
 
 		}
