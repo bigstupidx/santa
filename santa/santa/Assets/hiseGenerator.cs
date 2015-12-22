@@ -25,20 +25,20 @@ public class hiseGenerator : MonoBehaviour {
         parentC = transform.parent.GetComponent<RectTransform>();
         stevec = 0;//Random.Range(0, 1000);
 
-        seznamHis = new GameObject[Hise.Length * 4];
+        //seznamHis = new GameObject[Hise.Length * 4];
 
-        for (int i = 0; i < Hise.Length; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                seznamHis[i * 4 + j] = Instantiate(Hise[i]) as GameObject;
-                seznamHis[i * 4 + j].transform.SetParent(transform, false);
-            }
-            //
-            //seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
-            //seznamHis[i] = transform.GetChild(i).gameObject;
+        //for (int i = 0; i < Hise.Length; i++)
+        //{
+        //    for (int j = 0; j < 4; j++)
+        //    {
+        //        seznamHis[i * 4 + j] = Instantiate(Hise[i]) as GameObject;
+        //        seznamHis[i * 4 + j].transform.SetParent(transform, false);
+        //    }
+        //    //
+        //    //seznamHis[i].GetComponent<RectTransform>().position = new Vector3(20000, 20000, 1);
+        //    //seznamHis[i] = transform.GetChild(i).gameObject;
 
-        }
+        //}
 
         for (int i = 0; i < Hise.Length; i++)
         {

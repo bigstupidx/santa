@@ -4,11 +4,11 @@ using System.Collections;
 public class hisaSkripta : MonoBehaviour {
 
     // Use this for initialization
-    hiseGenerator mapGenerator;
+    public hiseGenerator mapGenerator;
     public int IdHisa = -1;
     public float speed;
     public bool vCol = false;
-    RectTransform rectCanvas;
+    public RectTransform rectCanvas;
     RectTransform rectMe;
     GameObject animator;
 
@@ -39,6 +39,7 @@ public class hisaSkripta : MonoBehaviour {
             stariHp = 1;
             hp = 1;
         }
+        gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
