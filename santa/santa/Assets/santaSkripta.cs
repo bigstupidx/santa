@@ -121,10 +121,10 @@ public class santaSkripta : MonoBehaviour {
         {
             seznamDaril[stevec].SetActive(true);
             seznamDaril[stevec].GetComponent<RectTransform>().position = gameObject.GetComponent<RectTransform>().position;
-            seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
-            seznamDaril[stevec].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 5.2f), ForceMode2D.Impulse);
-            //seznamDaril[stevec].GetComponent<dariloSkripta>().hitrost = seznamDaril[stevec].GetComponent<dariloSkripta>().zacH;
+            //seznamDaril[stevec].GetComponent<dariloSkripta>().speed = 2f;
+            //seznamDaril[stevec].GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            //seznamDaril[stevec].GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 5.2f), ForceMode2D.Impulse);
+            seznamDaril[stevec].GetComponent<dariloSkripta>().hitrost = seznamDaril[stevec].GetComponent<dariloSkripta>().zacH;
            
             stevec++;
             stevec %= seznamDaril.Length;
@@ -166,7 +166,7 @@ public class santaSkripta : MonoBehaviour {
         }else if (levo)
         {
             
-            Debug.Log("v levoooooooo");
+            
             casLeft += Time.deltaTime;
             speedLeft = 50 * casLeft;
             gameObject.GetComponent<RectTransform>().localPosition -= transform.right * speedLeft; 
@@ -179,7 +179,7 @@ public class santaSkripta : MonoBehaviour {
         else if (desno)
         {
 
-            Debug.Log("v levoooooooo");
+           
             casRight += Time.deltaTime;
             speedRight = 50 * casRight;
             gameObject.GetComponent<RectTransform>().localPosition += transform.right * speedRight;
