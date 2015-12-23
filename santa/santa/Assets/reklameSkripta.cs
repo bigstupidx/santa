@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_ANDROID
 using GoogleMobileAds.Api;
-
+#endif
 public class reklameSkripta : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,12 +14,12 @@ public class reklameSkripta : MonoBehaviour {
     
 
     float casZak = 1;
+#if UNITY_ANDROID
     InterstitialAd interstitial;
     AdRequest request;
+#endif
 
-    public delegate void OnEvent(object arg);
-
-    public OnEvent onEvent = null;
+   
 
     void Start () {
         // mojspace.Class1.konstruktor("ca-app-pub-6604259944075538/1324230402", true);
@@ -55,7 +56,7 @@ public class reklameSkripta : MonoBehaviour {
         if (showReklamo)
         {
             showReklamo = false;
-            if (onEvent != null) onEvent(this);
+            
             //mojspace.Class1.showCelozaslonsko();
 #if UNITY_ANDROID
             if (interstitial.IsLoaded())
