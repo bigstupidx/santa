@@ -256,7 +256,8 @@ public class menuSkripta : MonoBehaviour {
 
         Application.OpenURL("market://details?id=com.morden.senta"); //Replace 'com.example.an
 #else
-        //mojspace.Class1.prizgiRate();
+
+        Application.OpenURL("ms-windows-store:REVIEW?PFN=" + "14250Mordenkul.SantaforaNight"); //mojspace.Class1.prizgiRate();
 
 #endif
 
